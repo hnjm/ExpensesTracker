@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_layout"
+	android:layout_width="match_parent"
+	android:layout_height="80dp"
+	android:layout_marginTop="40dp">
+       
+	<ProgressBar
+   		android:id="@+id/category_bar"
+	    android:layout_width="match_parent"
+   		android:layout_height="match_parent"
+ 		android:layout_marginLeft="20dp"
+ 		android:layout_marginRight="20dp"
+ 		android:layout_marginTop="9dp"
+ 		android:layout_marginBottom="9dp"
+   		style="@android:style/Widget.ProgressBar.Horizontal"
+   		android:progressDrawable="@drawable/progress_bar"
+   		android:max="100" />
+	
+	<RelativeLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerVertical="true"
+	 	android:layout_centerHorizontal="true">
+		<TextView
+	        android:id="@+id/category_name"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:maxWidth="320dp"
+	 		android:layout_centerHorizontal="true"
+ 			android:singleLine="true"
+ 			android:ellipsize="end"
+	        android:textColor="@color/black"
+	        android:textSize="20sp">
+	    </TextView>
+		 	    
+		<TextView
+	        android:id="@+id/category_percent"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	 		android:layout_below="@id/category_name"
+	 		android:layout_centerHorizontal="true"
+	        android:textColor="@color/black"
+	        android:textSize="20sp">
+	    </TextView>
+    
+	</RelativeLayout>    
+		 	    
+    <TextView
+        android:id="@+id/category_spent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_marginLeft="5dp"
+		android:layout_centerVertical="true"
+		android:layout_alignLeft="@id/category_bar"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:text="@string/spent">
+    </TextView>
+    
+    <TextView
+        android:id="@+id/category_spent_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/category_spent"
+		android:layout_marginLeft="5dp"
+		android:layout_centerVertical="true"
+		android:layout_alignLeft="@id/category_bar"
+        android:textColor="@color/blue"
+        android:textSize="15sp">
+    </TextView>
+    
+    <TextView
+        android:id="@+id/category_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+ 		android:layout_marginRight="5dp"
+		android:layout_centerVertical="true"
+		android:layout_alignRight="@id/category_bar"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:text="@string/limit_">
+    </TextView>
+    
+    <TextView
+        android:id="@+id/category_limit_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/category_limit"
+		android:layout_centerVertical="true"
+		android:layout_alignRight="@id/category_bar"
+ 		android:layout_marginRight="5dp"
+        android:textColor="@color/blue"
+        android:textSize="15sp">
+    </TextView>
+    
+</RelativeLayout>

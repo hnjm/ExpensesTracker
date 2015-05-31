@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_category_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:layout_marginRight="@dimen/common_margin"
+            android:layout_marginTop="@dimen/margin_top"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/common_text_size"
+                android:text="@string/category" />
+
+            <EditText
+                android:id="@+id/category_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:singleLine="true"
+                android:layout_toRightOf="@id/category_name" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_category_limit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:layout_marginRight="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin"
+            android:layout_below="@id/ll_category_name"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/category_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/common_text_size"
+                android:text="@string/limit" />
+
+            <EditText
+                android:id="@+id/category_limit_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55dp"
+                android:layout_toRightOf="@id/category_limit"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_category_period"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:layout_marginRight="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin"
+            android:layout_below="@id/ll_category_limit"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/category_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/common_text_size"
+                android:text="@string/period" />
+
+            <Spinner
+                android:id="@+id/category_period_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_toRightOf="@id/category_period"
+                android:textSize="@dimen/common_text_size"
+                android:drawSelectorOnTop="true" />
+
+        </LinearLayout>
+
+	</RelativeLayout>
+	
+</ScrollView>

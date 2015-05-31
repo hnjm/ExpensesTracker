@@ -1,0 +1,105 @@
+<resources>
+    
+    <string name="app_name">Expenses Tracker</string>
+
+    <string name="menu">Menu</string>
+    
+    <!-- Help -->
+    <string name="help">Help</string>
+    <string name="help_categories">Any expenses always belong to a certain category. You can modify or add new categories which cover your everyday expenses. Set the expenses limit for corresponding time range for each category. Expenses limit means the maximum amount of funds you expect to spend within this category during the defined time range (week/month/year).</string>
+    <string name="help_expenses">Add all your expenses here by entering the expense amount, date, category and expense details. Expenses are displayed within the certain time range, defined by the selected tab.</string>
+    <string name="help_planner">Set the time range by tapping on dates. The expenses percentage in relation to category\'s expense limit will be displayed. Changing time range will cause the recalculation of the expense limit and the expenses percentage as well.</string>
+    <string name="help_distribution">Set the time range by tapping on dates. The relative percentage distribution of category expenses will be displayed. Changing time range will cause the recalculation of the category expenses percentage.</string>
+	<string name="help_transactions">The expenses for selected category and time range are displayed here in the view mode only.</string>
+    <string name="help_settings">Here you can set up your currency and a number of time range tabs displayed in the Expenses section. Also you may export expenses data into CSV.</string>
+    
+    <!-- Categories -->
+    <string name="categories">Categories</string>
+    <string name="period">Period</string>
+    <string name="limit">Limit</string>
+    <string name="delete_category">Delete category</string>
+    <string name="add_category">Add category</string>
+    <string name="edit_category">Edit category</string>
+    <string name="toast_empty_category">Enter a category</string>
+    <string name="toast_empty_limit">Enter an amount limit</string>
+    
+    <!-- Expenses -->
+    <string name="expenses">Expenses</string>
+    <string name="add_expense">Add expense</string>
+    <string name="edit_expense">Edit expense</string>
+    <string name="delete_expense">Delete expense</string>
+    <string name="no_entries">No entries</string>
+    <string name="no_tabs">Please select time period tabs in Settings</string>
+    <string name="select_all">Select all</string>
+    <string name="delete">Delete</string>
+    <string name="total">Total</string>
+    
+    <!-- Tracker -->
+    <string name="limit_">Limit:</string>
+    <string name="spent">Spent:</string>
+    <string name="other">Other</string>
+    <string name="planner">Planner</string>
+    <string name="distribution">Distribution</string>
+
+    <!-- Transactions -->
+    <string name="transactions">Transactions</string>
+    <string name="details">Details</string>
+    
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="select_your_currency">Select your currency and update all expenses accordingly based on the current rate</string>
+    <string name="update_all_expenses">Update all</string>
+    <string name="select_time_periods">Select your time ranges displayed as tabs in Expenses</string>
+    <string name="available_in_full_version">(available in full version)</string>
+    <string name="one_week">1 week</string>
+    <string name="two_weeks">2 weeks</string>
+    <string name="three_weeks">3 weeks</string>
+	<string name="one_month">1 month</string>
+	<string name="two_months">2 months</string>
+	<string name="three_months">3 months</string>
+	<string name="six_months">6 months</string>
+	<string name="one_year">1 year</string>
+	<string name="two_years">2 years</string>
+	<string name="exchange_rate_failed">Getting exchange rate failed. Please check the connection.</string>
+    <string name="currency_failed">Getting available currency list failed. Please try again.</string>
+	<string name="export_text">Select time range for exporting Expenses data to CSV</string>
+	<string name="export">Export</string>
+			
+    <string name="usd">USD</string>
+    <string name="sms_notif">Enable incoming SMS scanning</string>
+    <string name="sms_notif_help">Use this option to enable automatical expenses filling. Once banking account SMS arrives, pop-up dialog will be displayed allowing to enter expense data.</string>
+    <string name="phone_number">Enter banking account SMS notification phone number:</string>
+    
+    <!-- About -->
+    <string name="about">About</string>
+    <string name="about_text"><b>ExpensesTracker, v2.3</b>\n\nThis financial tool allows you to keep track of your personal expenses.\n\nPlease send any suggestions or inquiries to </string>
+    <string name="about_email">amilien.labs@gmail.com.\n</string>
+    <string name="about_copyright1">Copyright \u00A9 2014 AmiLabs.</string>
+    <string name="about_copyright2">All rights reserved.\n</string>
+    <string name="rate_it">If you like the app, please rate it</string>
+    
+    <!-- Dialogs -->
+    <string name="toast_empty_amount">Enter a valid amount</string>
+    <string name="amount">Amount</string>
+    <string name="expense_details">Expense details</string>
+    <string name="category">Category</string>
+    <string name="date">Date</string>
+    <string name="date_from">Date from:</string>
+    <string name="date_to">Date to:</string>
+    <string name="change_period">Change period</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    
+    <!-- Unlock -->
+    <string name="pro">Unlock Full version</string>
+    <string name="unlock">Unlock</string>
+    <string name="ads_free">Ads Free Version</string>
+    <string name="price">0.99$</string>
+    <string name="features_list">Features list:</string>
+    <string name="feature1">&#8226; No ads</string>
+    <string name="feature2">&#8226; Full list of currencies</string>
+    <string name="feature3">&#8226; More time range tabs in Expenses section</string>
+    <string name="feature4">&#8226; Export Expenses data to CSV</string>
+    
+    <string name="crash_toast_text">Expenses Tracker crashed, please send a report to the developer to fix this issue!</string>
+</resources>

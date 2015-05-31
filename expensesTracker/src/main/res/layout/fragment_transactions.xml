@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@color/bg_list_color"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+	<RelativeLayout
+	    android:id="@+id/transactions_header_layout"
+		android:layout_width="match_parent"
+		android:layout_height="40dp"
+		android:background="@color/bar">
+		
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	 		android:layout_centerVertical="true"
+ 			android:layout_marginLeft="10dp"
+	        android:textColor="@color/black"
+	        android:textSize="18sp"
+	        android:text="@string/date">
+	    </TextView>
+			 	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	 		android:layout_centerVertical="true"
+ 			android:layout_marginLeft="130dp"
+	        android:textColor="@color/black"
+	        android:textSize="18sp"
+	        android:text="@string/amount">
+	    </TextView>
+			 	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	 		android:layout_centerVertical="true"
+ 			android:layout_marginLeft="250dp"
+	        android:textColor="@color/black"
+	        android:textSize="18sp"
+	        android:text="@string/details">
+	    </TextView>
+			 	    
+	</RelativeLayout>
+    
+    <ListView
+  		android:id="@+android:id/list"
+  		android:layout_width="match_parent"
+  		android:layout_height="match_parent"
+  		android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+  		android:listSelector="@android:color/transparent">
+	</ListView>
+	
+	<RelativeLayout
+	    android:id="@+id/total_layout"
+		android:layout_width="match_parent"
+		android:background="@color/bar"
+	 	android:layout_alignParentBottom="true"
+		android:layout_height="40dp">
+		
+	    <TextView
+	    	android:id="@+id/tv_total"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	 		android:layout_centerVertical="true"
+	 		android:layout_marginLeft="10dp"
+	        android:textColor="@color/black"
+	        android:textSize="18sp">
+	    </TextView>
+			 	    
+	</RelativeLayout>
+
+</RelativeLayout>

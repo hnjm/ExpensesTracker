@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="40dp">
+       
+    <TextView
+        android:id="@+id/category_name"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+ 		android:layout_marginLeft="10dp"
+ 		android:layout_centerVertical="true"
+ 		android:layout_alignParentLeft="true"
+ 		android:singleLine="true"
+ 		android:ellipsize="end"
+        android:textColor="@color/black"
+        android:textSize="18sp">
+    </TextView>
+	 	    
+    <TextView
+        android:id="@+id/category_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+ 		android:layout_marginLeft="300dp"
+ 		android:layout_centerVertical="true"
+        android:textColor="@color/black"
+        android:textSize="18sp" >
+    </TextView>
+	 	    
+    <TextView
+        android:id="@+id/category_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+ 		android:layout_marginLeft="580dp"
+ 		android:layout_centerVertical="true"
+        android:textColor="@color/black"
+        android:textSize="18sp" >
+    </TextView>
+	 	    
+    <ImageView
+        android:id="@+id/category_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="10dp"
+	 	android:layout_alignParentRight="true"
+ 		android:layout_centerVertical="true"
+		android:visibility="invisible"
+        android:src="@drawable/topicon_right" >
+    </ImageView>
+    
+    <CheckBox
+        android:id="@+id/category_check"
+        android:button="@drawable/custom_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+ 		android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/checkbox_right_margin"
+        android:visibility="invisible"
+        android:focusable="false"
+        android:clickable="false" >
+    </CheckBox>
+	    
+</RelativeLayout>

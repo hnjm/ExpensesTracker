@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_expense_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:layout_marginRight="@dimen/common_margin"
+            android:layout_marginTop="@dimen/margin_top"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/expense_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/common_text_size"
+                android:text="@string/amount" />
+
+            <EditText
+                android:id="@+id/expense_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:layout_toRightOf="@id/expense_name"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_expense_date_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:layout_marginRight="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin"
+            android:layout_below="@id/ll_expense_name"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/expense_date_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/common_text_size"
+                android:text="@string/date" />
+
+            <Button
+                android:id="@+id/expense_btn_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_toRightOf="@id/expense_date_name" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_expense_category_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:layout_marginRight="@dimen/common_margin"
+            android:layout_marginTop="@dimen/common_margin"
+            android:layout_below="@id/ll_expense_date_name"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/expense_btn_date"
+                android:textSize="@dimen/common_text_size"
+                android:text="@string/category" />
+
+            <Spinner
+                android:id="@+id/category_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/category_name"
+                android:textSize="@dimen/common_text_size"
+                android:drawSelectorOnTop="true" />
+
+        </LinearLayout>
+
+        <TextView
+	        android:id="@+id/expense_details_label"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="@dimen/common_margin"
+	        android:layout_marginTop="@dimen/common_margin"
+	   		android:layout_below="@id/ll_expense_category_name"
+	        android:textSize="@dimen/common_text_size"
+	        android:text="@string/expense_details" />
+	
+	    <EditText 
+	        android:id="@+id/expense_details"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="@dimen/common_margin"
+	        android:layout_marginRight="@dimen/common_margin"
+	   		android:layout_below="@id/expense_details_label" />
+
+    </RelativeLayout>
+	
+</ScrollView>

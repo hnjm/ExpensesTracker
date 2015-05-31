@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="pie_colors"
+        translatable="false">
+        <item>@drawable/progress_bar_red</item>
+        <item>@drawable/progress_bar_blue</item>
+        <item>@drawable/progress_bar_green</item>
+        <item>@drawable/progress_bar_orange</item>
+        <item>@drawable/progress_bar_purple</item>
+        <item>@drawable/progress_bar_yellow</item>
+        <item>@drawable/progress_bar_gray</item>
+        <item>@drawable/progress_bar_greenlight</item>
+        <item>@drawable/progress_bar_purplelight</item>
+        <item>@drawable/progress_bar_bluelight</item>
+    </string-array>
+    <string-array
+        name="colors"
+        translatable="false">
+        <item>@color/red</item>
+        <item>@color/blue</item>
+        <item>@color/green</item>
+        <item>@color/orange</item>
+        <item>@color/purple</item>
+        <item>@color/yellow</item>
+        <item>@color/gray</item>
+        <item>@color/green_light</item>
+        <item>@color/purple_light</item>
+        <item>@color/blue_light</item>
+    </string-array>
+    <string-array name="category">
+        <item>Automobile</item>
+        <item>Entertainment</item>
+        <item>Family</item>
+        <item>Food</item>
+        <item>Health Care</item>
+        <item>Home Office</item>
+        <item>Household</item>
+        <item>Insurance</item>
+        <item>Loans</item>
+        <item>Other</item>
+        <item>Personal</item>
+        <item>Shopping</item>
+        <item>Tax</item>
+        <item>Utilities</item>
+        <item>Vacation</item>
+	</string-array>
+    <string-array name="period">
+        <item>Week</item>
+        <item>Month</item>
+        <item>Year</item>
+	</string-array>
+    <string-array name="periods">
+        <item>@string/one_week</item>
+        <item>@string/two_weeks</item>
+        <item>@string/three_weeks</item>
+        <item>@string/one_month</item>
+        <item>@string/two_months</item>
+        <item>@string/three_months</item>
+        <item>@string/six_months</item>
+        <item>@string/one_year</item>
+        <item>@string/two_years</item>
+    </string-array>
+    <string-array name="action_list">
+        <item>@string/distribution</item>
+        <item>@string/planner</item>
+    </string-array>
+</resources>

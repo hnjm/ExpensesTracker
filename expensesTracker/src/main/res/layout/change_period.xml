@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="40dp"
+ 	android:layout_alignParentTop="true"
+    android:background="@color/bar"
+    android:orientation="horizontal">
+	
+	<RelativeLayout
+	    android:id="@+id/start_period_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+	    android:background="@drawable/tv_selector"
+	 	android:clickable="true">
+		
+	    <TextView
+	    	android:id="@+id/tv_start_period"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	 		android:layout_centerVertical="true"
+	 		android:layout_marginLeft="10dp"
+	        android:textColor="@color/black"
+	        android:textSize="18sp">
+	    </TextView>
+		
+	    <ImageView
+	        android:id="@+id/iv_calendar1"
+	        android:layout_width="25dp"
+	        android:layout_height="25dp"
+	        android:layout_toRightOf="@id/tv_start_period"
+	 		android:layout_marginLeft="10dp"
+	 		android:layout_marginRight="10dp"
+	 		android:layout_centerVertical="true"
+	        android:src="@drawable/ic_calendar" >
+	    </ImageView>
+
+	</RelativeLayout>
+	    	    
+	<View
+	    android:id="@+id/dummy"
+   		android:layout_width="0dp"
+   		android:layout_height="match_parent"
+	 	android:layout_weight="1"
+   		android:background="@color/bar"/>
+	
+	<RelativeLayout
+	    android:id="@+id/finish_period_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+	    android:background="@drawable/tv_selector"
+	 	android:clickable="true">
+		
+	    <TextView
+	    	android:id="@+id/tv_finish_period"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	 		android:layout_centerVertical="true"
+	 		android:layout_marginLeft="10dp"
+	 		android:layout_marginRight="10dp"
+	        android:textColor="@color/black"
+	        android:textSize="18sp">
+	    </TextView>
+
+		<ImageView
+	        android:id="@+id/iv_calendar2"
+	        android:layout_width="25dp"
+	        android:layout_height="25dp"
+	        android:layout_toRightOf="@id/tv_finish_period"
+	        android:layout_marginRight="10dp"
+	 		android:layout_centerVertical="true"
+	        android:src="@drawable/ic_calendar" >
+	    </ImageView>
+	    
+	</RelativeLayout>
+		 	    
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/distribution_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/change_period"/>
+    
+    <com.echo.holographlibrary.PieGraph
+        android:id="@+id/piegraph"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="15dp"
+        app:pieInnerCircleRatio="165"
+        app:pieSlicePadding="0dp"/>
+
+	<ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/piegraph"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"/>
+   
+	<TextView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/no_entries"
+        android:textSize="38sp"
+        android:visibility="gone"/>
+	
+</RelativeLayout>

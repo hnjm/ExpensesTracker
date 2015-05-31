@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
+    defaultConfig {
+        applicationId "com.amilabs.android.expensestracker"
+        minSdkVersion 11
+        targetSdkVersion 22
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile project(':holoGraphLibrary')
+    compile 'com.getbase:floatingactionbutton:1.9.0'
+    compile 'com.google.android.gms:play-services:+'
+    compile 'com.android.support:support-v4:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.1.0'
+    compile files('libs/acra-4.5.0.jar')
+    compile files('libs/opencsv-2.1-1.0.0.jar')
+    compile files('libs/poi-3.8-20120326.jar')
+}

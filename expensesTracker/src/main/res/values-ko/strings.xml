@@ -1,0 +1,105 @@
+<resources>
+    
+    <string name="app_name">비용 스케줄러</string>
+
+    <string name="menu">메뉴</string>
+    
+    <!-- Help -->
+    <string name="help">도움</string>
+    <string name="help_categories">각 카테고리에 기간에 맞추어 (비용)한도를 입력하세요. 한도는 여러분이 지정할 수 있습니다. (주,달,년) 이 기간동안은 정해놓은 한도를 초과하지 않습니다.</string>
+    <string name="help_expenses">모든 비용을 가격, 날짜, 카테고리 및 추가적인 사항을 포함하여 이 탭에 추가하세요. "비용"탭에서는 아무때나 기간을 정할 수 있으며 여러분이 지정한 기간을 반영합니다.</string>
+    <string name="help_planner">정해놓은 한도내에 얼마나 돈을 소비했는지 반영합니다. 이자는 정해놓은 기간내에 변경된 정보에 맞추어 재정산되어 각 카테고리별로 보여집니다.</string>
+    <string name="help_distribution">정해놓은 한도내에 얼마나 돈을 소비했는지 반영합니다. 서로 카테고리의 비용이 표시됩니다. 시간 범위를 변경하면 카테고리 비용 비율의 재 계산의 원인이됩니다.</string>
+	<string name="help_transactions">선택한 카테고리와 시간 범위에 대한 비용은 여기에 표시됩니다.</string>
+    <string name="help_settings">이 탭에서는 여러분은 화폐를 정하고, 기간을 선택할수 있습니다.</string>
+    
+    <!-- Categories -->
+    <string name="categories">카테고리</string>
+    <string name="period">기간</string>
+    <string name="limit">한도</string>
+    <string name="delete_category">카테고리를 제거</string>
+    <string name="add_category">카테고리를 추가</string>
+    <string name="edit_category">카테고리를 업데이트</string>
+    <string name="toast_empty_category">카테고리를 입력</string>
+    <string name="toast_empty_limit">한도액을 입력</string>
+    
+    <!-- Expenses -->
+    <string name="expenses">비용</string>
+    <string name="add_expense">비용을 추가</string>
+    <string name="edit_expense">편집 비용</string>
+    <string name="delete_expense">비용을 제거</string>
+    <string name="no_entries">어떤 항목이 없음</string>
+    <string name="no_tabs">설정에서 시간 탭을 선택하세요</string>
+    <string name="select_all">모두 선택</string>
+    <string name="delete">제거</string>
+    <string name="total">합계</string>
+    
+    <!-- Tracker -->
+    <string name="limit_">한도:</string>
+    <string name="spent">소요:</string>
+    <string name="other">다른</string>
+    <string name="planner">입안자</string>
+    <string name="distribution">분배</string>
+
+    <!-- Transactions -->
+    <string name="transactions">업무</string>
+    <string name="details">세부</string>
+    
+    <!-- Settings -->
+    <string name="settings">설정</string>
+    <string name="select_your_currency">통화를 선택하고 현재 속도를 기반으로 따라 모든 비용을 업데이트</string>
+    <string name="update_all_expenses">모든 업데이트</string>
+    <string name="select_time_periods">비용에 탭으로 표시하여 기간을 선택</string>
+    <string name="available_in_full_version">(정식 버전에서 사용할 수있는)</string>
+    <string name="one_week">일주</string>
+    <string name="two_weeks">이주</string>
+    <string name="three_weeks">삼주</string>
+	<string name="one_month">1개월</string>
+	<string name="two_months">2개월</string>
+	<string name="three_months">3개월</string>
+	<string name="six_months">6개월</string>
+	<string name="one_year">일년</string>
+	<string name="two_years">이년</string>
+	<string name="exchange_rate_failed">환율은 실패하기. 연결을 확인하시기 바랍니다.</string>
+    <string name="currency_failed">Getting available currency list failed. Please try again.</string>
+    <string name="export_text">CSV에 비용 데이터를 내보낼 시간 범위를 선택</string>
+	<string name="export">수출</string>
+			
+    <string name="usd">USD</string>
+    <string name="sms_notif">Enable incoming SMS scanning</string>
+    <string name="sms_notif_help">Use this option to enable automatical expenses filling. Once banking account SMS arrives, pop-up dialog will be displayed allowing to enter expense data.</string>
+    <string name="phone_number">Enter banking account SMS notification phone number:</string>
+    
+    <!-- About -->
+    <string name="about">에 대한</string>
+    <string name="about_text"><b>ExpensesTracker, v2.3</b>\n\n이 금융 도구를 사용하면 귀하의 개인 비용을 추적 할 수 있습니다.\n\n어떤 제안이나 문의를 보내 주시기 바랍니다</string>
+    <string name="about_email">amilien.labs@gmail.com.\n</string>
+    <string name="about_copyright1">Copyright \u00A9 2014 AmiLabs.</string>
+    <string name="about_copyright2">All rights reserved.\n</string>
+    <string name="rate_it">만약 이 앱이 마음에 든다면 평가해 주세요</string>
+    
+    <!-- Dialogs -->
+    <string name="toast_empty_amount">유효한 금액을 입력</string>
+    <string name="amount">양</string>
+    <string name="expense_details">비용 세부 정보</string>
+    <string name="category">카테고리</string>
+    <string name="date">날짜</string>
+    <string name="date_from">에서 날짜:</string>
+    <string name="date_to">현재까지:</string>
+    <string name="change_period">변경 기간</string>
+    <string name="cancel">취소</string>
+    <string name="ok">확인</string>
+
+    <!-- Unlock -->
+    <string name="pro">풀 버전</string>
+    <string name="unlock">Unlock</string>
+    <string name="ads_free">Ads Free Version</string>
+    <string name="price">0.99달러 입니다</string>
+    <string name="features_list">기능 목록:</string>
+    <string name="feature1">&#8226; 광고의 부재</string>
+    <string name="feature2">&#8226; 통화의 전체 목록</string>
+    <string name="feature3">&#8226; 다양한 기간에 따른 더 많은 탭에 접속할 수 있습니다</string>
+    <string name="feature4">&#8226; CSV로 내보내기 비용 데이터</string>
+    
+    <string name="crash_toast_text">응용 프로그램은이 문제를 해결하기 위해 개발자에게 보고서를 보내 주시기 바랍니다, 추락!</string>
+</resources>

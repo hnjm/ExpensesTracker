@@ -1,0 +1,28 @@
+<resources>
+    <style name="Widget.Styled.ActionBarSplit" parent="Widget.AppCompat.ActionBar.Solid">
+	    <item name="android:showDividers">middle</item>
+	    <item name="android:divider">@drawable/divider_ab</item>
+	    <item name="android:dividerPadding">0dp</item>
+	</style>
+    <style name="Theme.MyTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+	    <item name="actionModeCloseDrawable">@drawable/ab_cancel</item>
+    	<item name="android:actionModeCloseDrawable">@drawable/ab_cancel</item>
+    	<item name="actionBarDivider">@drawable/divider_ab</item>
+    	<item name="android:actionBarDivider">@drawable/divider_ab</item>
+    	<item name="actionBarSplitStyle">@style/Widget.Styled.ActionBarSplit</item>
+    	<item name="android:actionBarSplitStyle">@style/Widget.Styled.ActionBarSplit</item>
+    </style>
+    <style name="ButtonStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_selector</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+</resources>

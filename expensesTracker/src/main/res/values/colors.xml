@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="pressed_color">#267490</drawable>
+    <drawable name="drawer_color">#505050</drawable>
+
+    <color name="black">#FF000000</color>
+    <color name="red">#FFFF0000</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="green">#FF00FF00</color>
+    <color name="orange">#FFFF7F00</color>
+    <color name="purple">#FF4B0082</color>
+    <color name="yellow">#FFE1D600</color>
+    <color name="gray">#FF8E888E</color>
+    <color name="light_gray">#FFC0C0C0</color>
+    <color name="green_light">#FF99CC00</color>
+    <color name="purple_light">#FF8F00FF</color>
+    <color name="blue_light">#FF33B5E5</color>
+    <color name="blue_transparent">#800000FF</color>
+    <color name="orange_transparent">#80FFBB33</color>
+    
+	<color name="bar">#8FC5EF</color>
+	<color name="drawer_bg">#505050</color>
+    <color name="main_menu_background">#303030</color>
+    <color name="holo_red_dark">#ffcc0000</color>
+    <color name="row_color">#EEEEEE</color>
+    <color name="bg_list_color">#FFFFFF</color>
+
+    <color name="pink">#e91e63</color>
+    <color name="pink_pressed">#ec407a</color>
+
+</resources>

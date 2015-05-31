@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ScrollView
+		android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        
+		<RelativeLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_currency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentTop="true"
+                android:textSize="18sp"
+                android:text="@string/select_your_currency"/>
+
+            <Spinner
+                android:id="@+id/spinner_currency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@id/tv_currency"
+                android:drawSelectorOnTop="true"
+                android:prompt="@string/usd"/>
+
+            <TextView
+		        android:id="@+id/tv_select_period_config"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="35dp"
+		        android:layout_marginLeft="20dp"
+		        android:layout_marginRight="20dp"
+		        android:layout_below="@id/spinner_currency"
+		        android:textSize="18sp"
+		        android:text="@string/select_time_periods"/>
+		
+		    <TableLayout
+		        android:id="@+id/tl_time_ranges"
+		        android:layout_marginTop="15dp"
+		        android:layout_marginLeft="15dp"
+		        android:layout_marginRight="15dp"
+		        android:layout_below="@id/tv_select_period_config"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content">
+		        
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content">
+		
+				    <CheckBox
+				        android:id="@+id/cb_1week"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:textSize="@dimen/cb_text_size"
+				        android:text="@string/one_week"
+				        android:singleLine="true"
+				        android:ellipsize="end"/>
+				
+				    <CheckBox
+				        android:id="@+id/cb_2weeks"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:textSize="@dimen/cb_text_size"
+				        android:text="@string/two_weeks"
+				        android:singleLine="true"
+				        android:ellipsize="end"/>
+				    				
+				    <CheckBox
+				        android:id="@+id/cb_3weeks"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:textSize="@dimen/cb_text_size"
+				        android:text="@string/three_weeks"
+				        android:singleLine="true"
+				        android:ellipsize="end"/>
+				
+		        </TableRow>
+		        
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content">
+		
+				    <CheckBox
+				        android:id="@+id/cb_1month"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:textSize="@dimen/cb_text_size"
+				        android:text="@string/one_month"
+				        android:singleLine="true"
+				        android:ellipsize="end"/>
+				    				
+				    <CheckBox
+				        android:id="@+id/cb_2months"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:textSize="@dimen/cb_text_size"
+				        android:text="@string/two_months"
+				        android:singleLine="true"
+				        android:ellipsize="end"/>
+				
+				    <CheckBox
+				        android:id="@+id/cb_3months"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:textSize="@dimen/cb_text_size"
+				        android:text="@string/three_months"
+				        android:singleLine="true"
+				        android:ellipsize="end"/>
+				
+		        </TableRow>
+		        
+		        <TableRow
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content">
+		
+				    <CheckBox
+				        android:id="@+id/cb_6months"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:textSize="@dimen/cb_text_size"
+				        android:text="@string/six_months"
+				        android:singleLine="true"
+				        android:ellipsize="end"/>
+				
+				    <CheckBox
+				        android:id="@+id/cb_1year"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:textSize="@dimen/cb_text_size"
+				        android:text="@string/one_year"
+				        android:singleLine="true"
+				        android:ellipsize="end"/>
+				
+				    <CheckBox
+				        android:id="@+id/cb_2years"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:textSize="@dimen/cb_text_size"
+				        android:text="@string/two_years"
+				        android:singleLine="true"
+				        android:ellipsize="end"/>
+		
+		        </TableRow>
+		        
+			</TableLayout>
+		
+		    <TextView
+		        android:id="@+id/tv_export"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="35dp"
+		        android:layout_marginLeft="20dp"
+		        android:layout_marginRight="20dp"
+		        android:layout_below="@id/tl_time_ranges"
+		        android:textSize="18sp"
+		        android:text="@string/export_text"/>
+		
+		    <LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal"
+				android:layout_below="@id/tv_export"
+			    android:gravity="center">
+		        
+			    <Spinner
+			        android:id="@+id/spinner_time_range"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_weight="1"
+			        android:layout_marginLeft="20dp"
+			        android:drawSelectorOnTop="true"
+			        android:prompt="@string/one_week"/>
+			
+			    <Button
+			        android:id="@+id/btn_export"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_weight="1"
+			        android:layout_marginLeft="20dp"
+			        android:layout_marginRight="20dp"
+			    	android:background="@drawable/button_selector"
+			    	style="@style/ButtonStyle"
+			        android:text="@string/export"/>
+		    
+			</LinearLayout>
+		<!-- 
+		    <CheckBox
+		        android:id="@+id/cb_enable_sms_notif"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="20dp"
+		        android:layout_marginLeft="20dp"
+		        android:layout_marginRight="20dp"
+		        android:layout_below="@id/spinner"
+		        android:textSize="18sp"
+		        android:text="@string/sms_notif"/>
+		
+		  	<TextView
+		        android:id="@+id/tv_enable_sms_notif"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="8dp"
+		        android:layout_marginLeft="20dp"
+		        android:layout_marginRight="20dp"
+		        android:layout_below="@id/cb_enable_sms_notif"
+		        android:textSize="14sp"
+		        android:text="@string/sms_notif_help"/>
+		
+		    <TextView
+		        android:id="@+id/tv_phone_number"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="10dp"
+		        android:layout_marginLeft="20dp"
+		        android:layout_marginRight="20dp"
+		        android:layout_below="@id/tv_enable_sms_notif"
+		        android:textSize="18sp"
+		        android:text="@string/phone_number"/>
+		
+		  	<EditText
+		        android:id="@+id/et_phone_number"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="10dp"
+		        android:layout_marginLeft="20dp"
+		        android:layout_marginRight="20dp"
+		        android:layout_below="@id/tv_phone_number"
+		        android:textSize="18sp"
+		        android:inputType="phone"/>
+		 -->
+		 	
+		</RelativeLayout>
+		
+	</ScrollView>
+	
+</LinearLayout>

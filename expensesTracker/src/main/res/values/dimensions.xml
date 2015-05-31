@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_menu_item_padding_topbottom">16dp</dimen>
+    <dimen name="main_menu_item_padding_leftright">8dp</dimen>
+    
+    <dimen name="main_menu_item_image_height">24dp</dimen>
+    <dimen name="main_menu_item_image_width">24dp</dimen>
+    
+    <dimen name="main_menu_item_text_size">16sp</dimen>
+    <dimen name="main_menu_item_text_padding_left">10dp</dimen>
+    
+    <dimen name="checkbox_right_margin">0dp</dimen>
+    
+    <dimen name="drawer_size">240dp</dimen>
+    <dimen name="drawer_content_padding">0dp</dimen>
+    
+    <dimen name="cb_text_size">15sp</dimen>
+    <dimen name="common_text_size">18sp</dimen>
+    <dimen name="common_margin">20dp</dimen>
+    <dimen name="margin_top">10dp</dimen>
+</resources>

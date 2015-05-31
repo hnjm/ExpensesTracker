@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ScrollView
+		android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="center"
+		    android:orientation="vertical">
+		
+		    <TextView         
+		        android:id="@+id/tv_unlock_full_version"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textAllCaps="true"
+		        android:textStyle="bold"
+		        android:text="@string/unlock"
+		        android:textSize="32sp"
+		        android:textColor="@color/red"/>
+		    
+		    <TextView         
+		        android:id="@+id/tv_ads_free"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textAllCaps="true"
+		        android:textStyle="italic"
+		        android:text="@string/ads_free"
+		        android:textSize="28sp"
+		        android:textColor="@color/blue"/>
+ 
+		    <TextView         
+		        android:id="@+id/tv_for_price"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textAllCaps="true"
+		        android:textStyle="italic"
+		        android:text="@string/price"
+		        android:textSize="28sp"
+		        android:textColor="@color/blue"/>
+ 
+			<LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:gravity="left"
+			    android:paddingLeft="15dp"
+			    android:paddingRight="15dp"
+			    android:orientation="vertical">
+			    
+			    <TextView         
+			        android:id="@+id/tv_features_list"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/features_list"
+			        android:textSize="26sp"
+			        android:textColor="@color/black"
+			        android:visibility="invisible"/>
+			    
+			    <TextView         
+			        android:id="@+id/tv_feature1"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/feature1"
+		        	android:textStyle="italic"
+			        android:textSize="24sp"
+			        android:textColor="@color/black"
+			        android:visibility="invisible"/>
+			    
+			    <TextView         
+			        android:id="@+id/tv_feature2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/feature2"
+		        	android:textStyle="italic"
+			        android:textSize="24sp"
+			        android:textColor="@color/black"
+			        android:visibility="invisible"/>
+<!-- 
+			    <TextView         
+			        android:id="@+id/tv_feature3"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/feature3"
+		        	android:textStyle="italic"
+			        android:textSize="24sp"
+			        android:textColor="@color/black"/>
+		
+			    <TextView         
+			        android:id="@+id/tv_feature4"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/feature4"
+		        	android:textStyle="italic"
+			        android:textSize="24sp"
+			        android:textColor="@color/black"/>
+-->
+		    </LinearLayout>
+		    
+		    <Button
+		        android:id="@+id/btn_pay"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+			    android:layout_marginLeft="15dp"
+			    android:layout_marginRight="15dp"
+			    android:background="@drawable/button_selector"
+			    style="@style/ButtonStyle"
+		        android:text="@string/pro"/>
+		    
+		</LinearLayout>
+		
+	</ScrollView>
+	
+</LinearLayout>

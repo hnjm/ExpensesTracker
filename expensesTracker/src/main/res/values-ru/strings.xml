@@ -1,0 +1,105 @@
+<resources>
+    
+    <string name="app_name">Расходомер</string>
+
+    <string name="menu">Меню</string>
+    
+    <!-- Help -->
+    <string name="help">Помощь</string>
+    <string name="help_categories">Категории, объединяющие расходы в группы, могут быть изменены, удалены или добавлены. Для каждой категории установите лимит расходов для соответствующего периода времени. Лимит расходов означает максимальное количество средств, которое Вы расчитываете потратить в данной категории в течение выбранного периода времени (неделя/месяц/год).</string>
+    <string name="help_expenses">Добавляйте все свои расходы в этом разделе, указывая стоимость, дату, категорию и дополнительную заметку. Расходы отображаются за период времени, выбранный в зависимости от открытой закладки.</string>
+    <string name="help_planner">Отображает процентное соотношение расходов к установленному лимиту по данной категории за выбранный период времени. Период времени может быть изменен посредством нажатия на даты вверху экрана, вызывая перерасчет лимита средств по всем категориям.</string>
+    <string name="help_distribution">Отображает относительное процентное распределение расходов по категориям. Период времени может быть изменен посредством нажатия на даты вверху экрана, вызывая перерасчет процентного соотношения расходов по категориям.</string>
+	<string name="help_transactions">Здесь отображаются расходы в выбранной категории и за выставленный промежуток времени.</string>
+    <string name="help_settings">В этом разделе Вы можете настроить валюту и установить набор периодов времени, соответствующих закладкам в разделе Расходы. Также Вы можете экспортировать расходы в CSV.</string>
+    
+    <!-- Categories -->
+    <string name="categories">Категории расходов</string>
+    <string name="period">Период</string>
+    <string name="limit">Лимит</string>
+    <string name="delete_category">Удалить категорию</string>
+    <string name="add_category">Добавить категорию</string>
+    <string name="edit_category">Изменить категорию</string>
+    <string name="toast_empty_category">Введите категорию</string>
+    <string name="toast_empty_limit">Введите лимит расходов</string>
+    
+    <!-- Expenses -->
+    <string name="expenses">Расходы</string>
+    <string name="add_expense">Добавить расход</string>
+    <string name="edit_expense">Изменить расход</string>
+    <string name="delete_expense">Удалить расход</string>
+    <string name="no_entries">Записей нет</string>
+    <string name="no_tabs">Выберите периоды времени в Настройках</string>
+    <string name="select_all">Выбрать все</string>
+    <string name="delete">Удалить</string>
+    <string name="total">Всего</string>
+    
+    <!-- Tracker -->
+    <string name="limit_">Лимит:</string>
+    <string name="spent">Потрачено:</string>
+    <string name="other">Другое</string>
+    <string name="planner">Планирование</string>
+    <string name="distribution">Распределение</string>
+
+    <!-- Transactions -->
+    <string name="transactions">Транзакции</string>
+    <string name="details">Заметка</string>
+    
+    <!-- Settings -->
+    <string name="settings">Настройки</string>
+    <string name="select_your_currency">Выберите валюту и пересчитайте Ваши расходы в соответствии с выбранной валютой по текущему курсу</string>
+    <string name="update_all_expenses">Пересчитать</string>
+    <string name="select_time_periods">Выберите периоды времени, отображаемые на закладках в Расходах</string>
+    <string name="available_in_full_version">(доступно в полной версии)</string>
+    <string name="one_week">1 неделя</string>
+    <string name="two_weeks">2 недели</string>
+    <string name="three_weeks">3 недели</string>
+	<string name="one_month">1 месяц</string>
+	<string name="two_months">2 месяца</string>
+	<string name="three_months">3 месяца</string>
+	<string name="six_months">6 месяцев</string>
+	<string name="one_year">1 год</string>
+	<string name="two_years">2 года</string>
+	<string name="exchange_rate_failed">Не удалось получить биржевой курс, пожалуйста проверьте сетевое соединение.</string>
+    <string name="currency_failed">Не удалось получить список доступных валют. Пожалуйста попробуйте открыть Настройки еще раз.</string>
+	<string name="export_text">Выберите период за который требуется экспортировать данные по расходам в CSV</string>
+	<string name="export">Экспорт</string>
+		
+    <string name="usd">USD</string>
+    <string name="sms_notif">Enable incoming SMS scanning</string>
+    <string name="sms_notif_help">Use this option to enable automatical expenses filling. Once banking account SMS arrives, pop-up dialog will be displayed allowing to enter expense data.</string>
+    <string name="phone_number">Enter banking account SMS notification phone number:</string>
+    
+    <!-- About -->
+    <string name="about">О приложении</string>
+    <string name="about_text"><b>Расходомер, v2.3</b>\n\nЭто финансовое приложение позволяет вести учет личных расходов.\n\nПожалуйста посылайте любые пожелания или предложения на </string>
+    <string name="about_email">amilien.labs@gmail.com.\n</string>
+    <string name="about_copyright1">Copyright \u00A9 2014 AmiLabs.</string>
+    <string name="about_copyright2">All rights reserved.\n</string>
+    <string name="rate_it">Если Вам понравилось приложение, пожалуйста, оцените его</string>
+    
+    <!-- Dialogs -->
+    <string name="toast_empty_amount">Введите правильное значение</string>
+    <string name="amount">Сумма</string>
+    <string name="expense_details">Дополнительно</string>
+    <string name="category">Категория</string>
+    <string name="date">Дата</string>
+    <string name="date_from">Начальная дата:</string>
+    <string name="date_to">Конечная дата:</string>
+    <string name="change_period">Изменить период</string>
+    <string name="cancel">Отмена</string>
+    <string name="ok">OK</string>
+    
+    <!-- Unlock -->
+    <string name="pro">Полная версия</string>
+    <string name="unlock">Разблокируйте</string>
+    <string name="ads_free">версию без рекламы</string>
+    <string name="price">за 0.99$</string>
+    <string name="features_list">Список опций:</string>
+    <string name="feature1">&#8226; Отсутствие рекламы</string>
+    <string name="feature2">&#8226; Полный список валют</string>
+    <string name="feature3">&#8226; Доступно больше закладок, соответствующих разным периодам времени в разделе Расходы</string>
+    <string name="feature4">&#8226; Экспорт расходов в CSV</string>
+    
+    <string name="crash_toast_text">Произошла ошибка в Expenses Tracker, пожалуйста, пошлите письмо с отчетом разработчику, чтобы исправить проблему!</string>
+</resources>
