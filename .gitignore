@@ -1,0 +1,11 @@
+.gradle
+.idea
+assets
+build
+expensesTracker/build/
+holoGraphLibrary/build/
+library
+signed
+*.iml
+import-summary.txt
+local.properties
