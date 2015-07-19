@@ -1,8 +1,8 @@
 package com.amilabs.android.expensestracker.fragments;
 
 import com.amilabs.android.expensestracker.R;
-import com.amilabs.android.expensestracker.adapter.ExpensesListAdapter;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
+import com.amilabs.android.expensestracker.fragments.adapters.ExpensesListAdapter;
 import com.amilabs.android.expensestracker.utils.SharedPref;
 import com.amilabs.android.expensestracker.utils.Utils;
 

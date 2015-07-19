@@ -1,7 +1,7 @@
 package com.amilabs.android.expensestracker;
 
-import com.amilabs.android.expensestracker.adapter.DrawerAdapter;
-import com.amilabs.android.expensestracker.adapter.DrawerRowItem;
+import com.amilabs.android.expensestracker.fragments.adapters.DrawerAdapter;
+import com.amilabs.android.expensestracker.fragments.adapters.DrawerRowItem;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
 import com.amilabs.android.expensestracker.fragments.AboutFragment;
 import com.amilabs.android.expensestracker.fragments.CategoryFragment;

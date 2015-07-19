@@ -35,8 +35,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.amilabs.android.expensestracker.R;
-import com.amilabs.android.expensestracker.adapter.DistributionListAdapter;
-import com.amilabs.android.expensestracker.adapter.DistributionListRowItem;
+import com.amilabs.android.expensestracker.fragments.adapters.DistributionListAdapter;
+import com.amilabs.android.expensestracker.fragments.adapters.DistributionListRowItem;
 import com.amilabs.android.expensestracker.database.Data;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
 import com.amilabs.android.expensestracker.interfaces.Constants;

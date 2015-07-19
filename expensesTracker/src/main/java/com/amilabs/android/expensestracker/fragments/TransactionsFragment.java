@@ -3,7 +3,7 @@ package com.amilabs.android.expensestracker.fragments;
 import java.util.ArrayList;
 
 import com.amilabs.android.expensestracker.R;
-import com.amilabs.android.expensestracker.adapter.TransactionListAdapter;
+import com.amilabs.android.expensestracker.fragments.adapters.TransactionListAdapter;
 import com.amilabs.android.expensestracker.database.Data;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
 import com.amilabs.android.expensestracker.interfaces.Constants;

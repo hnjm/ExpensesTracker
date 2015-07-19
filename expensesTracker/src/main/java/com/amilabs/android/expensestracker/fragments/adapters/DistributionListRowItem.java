@@ -1,4 +1,4 @@
-package com.amilabs.android.expensestracker.adapter;
+package com.amilabs.android.expensestracker.fragments.adapters;
 
 public class DistributionListRowItem {
 

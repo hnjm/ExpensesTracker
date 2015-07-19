@@ -1,7 +1,7 @@
 package com.amilabs.android.expensestracker.fragments;
 
 import com.amilabs.android.expensestracker.R;
-import com.amilabs.android.expensestracker.adapter.CategoryListAdapter;
+import com.amilabs.android.expensestracker.fragments.adapters.CategoryListAdapter;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
 import com.amilabs.android.expensestracker.utils.Utils;
 
@@ -24,7 +24,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;

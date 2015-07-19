@@ -2,6 +2,7 @@ package com.amilabs.android.expensestracker.fragments;
 
 import com.amilabs.android.expensestracker.R;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
+import com.amilabs.android.expensestracker.fragments.HelpDialogFragment;
 import com.amilabs.android.expensestracker.interfaces.Constants;
 import com.amilabs.android.expensestracker.tasks.CurrencyTask;
 import com.amilabs.android.expensestracker.tasks.ExchangeRateTask;
