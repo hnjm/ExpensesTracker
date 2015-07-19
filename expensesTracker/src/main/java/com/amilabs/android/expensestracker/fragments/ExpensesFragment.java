@@ -1,11 +1,8 @@
 package com.amilabs.android.expensestracker.fragments;
 
 import com.amilabs.android.expensestracker.R;
-import com.amilabs.android.expensestracker.interfaces.OnActionModeCallbackInterface;
 import com.amilabs.android.expensestracker.interfaces.OnDateSelectedListener;
 import com.amilabs.android.expensestracker.utils.SharedPref;
-import com.amilabs.android.expensestracker.utils.Utils;
-import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,16 +24,14 @@ import java.util.List;
 //import java.io.IOException;
 //import java.io.Serializable;
 
-public class ExpensesFragment extends Fragment implements
-        OnDateSelectedListener, OnActionModeCallbackInterface {
+public class ExpensesFragment extends Fragment implements OnDateSelectedListener {
 
     private static final String TAG = "ExpensesFragment";
     
     private AppCompatActivity mContext;
     private ViewPager mViewPager;
     private ExpensesPagerAdapter mAdapter;
-    private FloatingActionButton mFAB;
-    
+
     private String[] mPeriods;
     private List<String> mTabs;
 
@@ -46,7 +41,6 @@ public class ExpensesFragment extends Fragment implements
         View rootView = inflater.inflate(R.layout.fragment_expenses, container, false);
         TextView tvNoTabs = (TextView) rootView.findViewById(R.id.empty_view);
         mViewPager = (ViewPager) rootView.findViewById(R.id.pager);
-        mFAB = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
         mContext = (AppCompatActivity) getActivity();
         mContext.setTitle(getString(R.string.expenses));
@@ -55,7 +49,6 @@ public class ExpensesFragment extends Fragment implements
         if (areAllFalse(periods)) {
             mViewPager.setVisibility(View.GONE);
             tvNoTabs.setVisibility(View.VISIBLE);
-            mFAB.setVisibility(View.GONE);
         } else {
             mViewPager.setVisibility(View.VISIBLE);
             tvNoTabs.setVisibility(View.GONE);
@@ -79,19 +72,12 @@ public class ExpensesFragment extends Fragment implements
             mViewPager.setCurrentItem(mAdapter.currentPosition);
             mViewPager.setOnPageChangeListener(mAdapter);
             //setRetainInstance(true);
-            mFAB.setVisibility(View.VISIBLE);
-            mFAB.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mAdapter.fragments.get(mAdapter.currentPosition).showDialog(Utils.NEW_ENTRY_ID);
-                }
-            });
         }
         return rootView;
     }
     
     private boolean areAllFalse(boolean[] array) {
-        for(boolean b: array)
+        for (boolean b: array)
             if (b)
                 return false;
         return true;
@@ -105,11 +91,6 @@ public class ExpensesFragment extends Fragment implements
         //outState.putSerializable("fragments", sparseArraySerializable);
         if (mAdapter != null)
             outState.putInt("current_position", mAdapter.currentPosition);
-    }
-
-    @Override
-    public void onActionModeCallback(boolean isVisible) {
-        mFAB.setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
 
     @Override

@@ -5,6 +5,7 @@
 	android:layout_height="40dp"
  	android:layout_alignParentTop="true"
     android:background="@color/bar"
+	android:elevation="@dimen/header_elevation"
     android:orientation="horizontal">
 	
 	<RelativeLayout

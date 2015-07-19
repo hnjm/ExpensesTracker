@@ -22,6 +22,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_alignParentTop="true"
                 android:textSize="18sp"
+				android:textColor="@color/black"
                 android:text="@string/select_your_currency"/>
 
             <Spinner
@@ -43,6 +44,7 @@
 		        android:layout_marginRight="20dp"
 		        android:layout_below="@id/spinner_currency"
 		        android:textSize="18sp"
+				android:textColor="@color/black"
 		        android:text="@string/select_time_periods"/>
 		
 		    <TableLayout
@@ -173,6 +175,7 @@
 		        android:layout_marginRight="20dp"
 		        android:layout_below="@id/tl_time_ranges"
 		        android:textSize="18sp"
+				android:textColor="@color/black"
 		        android:text="@string/export_text"/>
 		
 		    <LinearLayout

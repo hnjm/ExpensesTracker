@@ -11,7 +11,6 @@ import com.amilabs.android.expensestracker.fragments.PlannerFragment;
 import com.amilabs.android.expensestracker.fragments.SettingsFragment;
 import com.amilabs.android.expensestracker.fragments.UnlockFragment;
 import com.amilabs.android.expensestracker.interfaces.Constants;
-import com.amilabs.android.expensestracker.interfaces.OnActionModeCallbackInterface;
 import com.amilabs.android.expensestracker.interfaces.OnDateSelectedListener;
 import com.amilabs.android.expensestracker.interfaces.OnUpdateFragmentInterface;
 import com.amilabs.android.expensestracker.utils.SharedPref;
@@ -30,10 +29,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -45,7 +45,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements
-	OnDateSelectedListener, OnUpdateFragmentInterface, OnActionModeCallbackInterface, Constants {
+	OnDateSelectedListener, OnUpdateFragmentInterface, Constants {
 
     private static final String TAG = "MainActivity";
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements
     private View mViewLine;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-    private ActionBar mActionBar;
+    private Toolbar mToolbar;
 
     private List<DrawerRowItem> mDrawerMenuItems;
     private Fragment mFragment;
@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPref.setPremium(this, true);
         setContentView(R.layout.drawer);
 
         DatabaseHandler.getInstance(this).init();
@@ -127,12 +128,13 @@ public class MainActivity extends AppCompatActivity implements
                     mDrawerLayout.closeDrawer(mDrawerListLayout);
             }
         });
-        
-        mActionBar = getSupportActionBar();
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         if (mDrawerLayout != null) {
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setHomeButtonEnabled(true);
-            mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.menu, R.string.app_name) { };
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+            mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.menu, R.string.app_name) { };
             mDrawerLayout.setDrawerListener(mDrawerToggle);
         }
     }
@@ -181,9 +183,15 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onActionModeCallback(boolean isVisible) {
-        if (mTag.equals(TAG_FRAGMENT_EXPENSES))
-            ((ExpensesFragment) mFragment).onActionModeCallback(isVisible);
+    public boolean onKeyUp(int keycode, KeyEvent e) {
+        switch (keycode) {
+            case KeyEvent.KEYCODE_MENU:
+                if (getSupportActionBar() != null ) {
+                    getSupportActionBar().openOptionsMenu();
+                    return true;
+                }
+        }
+        return super.onKeyUp(keycode, e);
     }
 
     @Override

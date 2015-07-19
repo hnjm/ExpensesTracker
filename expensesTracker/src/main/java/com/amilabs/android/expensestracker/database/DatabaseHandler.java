@@ -456,4 +456,18 @@ public class DatabaseHandler implements Constants {
         return list;
     }
 
+    public void setLimit(List<Integer> ids, int limit) {
+        String selection = Data.Categories.ID + " in (";
+        for (int i = 0; i < ids.size(); i++) {
+            if (i != ids.size() - 1)
+                selection += ids.get(i) + ", ";
+            else
+                selection += ids.get(i) + ")";
+        }
+        ContentValues cv = new ContentValues();
+        cv.put(Data.Categories.LIMIT, limit);
+        int rows = database.update(Data.Categories.TABLE_NAME, cv, selection, null);
+        if (rows == 0)
+            Log.e(TAG, "No rows updated");
+    }
 }

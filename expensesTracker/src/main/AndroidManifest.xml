@@ -1,12 +1,9 @@
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.amilabs.android.expensestracker"
-    android:versionCode="20150530"
+    android:versionCode="20150520"
     android:versionName="2.3" >
 
     <uses-sdk
-        tools:overrideLibrary="com.getbase.floatingactionbutton"
         android:minSdkVersion="14"
         android:targetSdkVersion="22" />
 
@@ -14,7 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.android.vending.BILLING" />
-
+    
     <supports-screens
         android:xlargeScreens="true"
         android:largeScreens="true"

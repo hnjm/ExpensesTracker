@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array
-        name="pie_colors"
-        translatable="false">
+    <string-array name="pie_colors">
         <item>@drawable/progress_bar_red</item>
         <item>@drawable/progress_bar_blue</item>
         <item>@drawable/progress_bar_green</item>
@@ -14,9 +12,7 @@
         <item>@drawable/progress_bar_purplelight</item>
         <item>@drawable/progress_bar_bluelight</item>
     </string-array>
-    <string-array
-        name="colors"
-        translatable="false">
+    <string-array name="colors">
         <item>@color/red</item>
         <item>@color/blue</item>
         <item>@color/green</item>

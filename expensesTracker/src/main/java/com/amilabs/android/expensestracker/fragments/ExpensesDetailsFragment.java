@@ -3,7 +3,6 @@ package com.amilabs.android.expensestracker.fragments;
 import com.amilabs.android.expensestracker.R;
 import com.amilabs.android.expensestracker.adapter.ExpensesListAdapter;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
-import com.amilabs.android.expensestracker.interfaces.OnActionModeCallbackInterface;
 import com.amilabs.android.expensestracker.utils.SharedPref;
 import com.amilabs.android.expensestracker.utils.Utils;
 
@@ -14,6 +13,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -59,12 +59,12 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
     private ListView mListView;
     private TextView mEmptyView, mTvTotalView;
     private RelativeLayout mTotalLayout;
+    private FloatingActionButton mFAB;
 
     public ExpensesListAdapter mAdapter;
     private DialogFragment mDialogFragment;
     private ActionMode mActionMode;
     private ActionModeCallback mActionModeCallback;
-    private OnActionModeCallbackInterface mCallback;
     private int mPeriod;
     // data supporting orientation change
     private boolean mIsNeededToRestore;
@@ -72,19 +72,8 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
     private boolean mIsDateDialogShown;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mCallback = (OnActionModeCallbackInterface) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnActionModeCallbackInterface");
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: pos = " + mLoaderId);
+        //Log.d(TAG, "onCreateView: pos = " + mLoaderId);
         mLoaderId = getArguments().getInt(PERIOD);
         boolean[] periods = SharedPref.getPeriods(getActivity());
         int counter = 0;
@@ -104,11 +93,12 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
     
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Log.d(TAG, "onViewCreated: pos = " + mLoaderId);
+        //Log.d(TAG, "onViewCreated: pos = " + mLoaderId);
         mListView = getListView();
         mEmptyView = (TextView) view.findViewById(R.id.empty_view);
         mTotalLayout = (RelativeLayout) view.findViewById(R.id.total_layout);
         mTvTotalView = (TextView) view.findViewById(R.id.tv_total);
+        mFAB = (FloatingActionButton) view.findViewById(R.id.fab);
 
         mAdapter = new ExpensesListAdapter(getActivity(), DatabaseHandler.getInstance(getActivity()).getExpensesData(mPeriod), mPeriod);
         mListView.setAdapter(mAdapter);
@@ -170,6 +160,13 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
                         Utils.getFormatted(DatabaseHandler.getInstance(getActivity()).getTotalExpenses(mPeriod)) + " " +
                         SharedPref.getCurrency(getActivity()));
             }
+            mFAB.setVisibility(View.VISIBLE);
+            mFAB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDialog(Utils.NEW_ENTRY_ID);
+                }
+            });
             getActivity().supportInvalidateOptionsMenu();
         }
         //Log.d(TAG, "updateView end: pos = " + mLoaderId);
@@ -279,7 +276,7 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
     }
     
     private void enableActionMode() {
-        mCallback.onActionModeCallback(false);
+        mFAB.setVisibility(View.GONE);
         mActionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(mActionModeCallback);
         mAdapter.setCheckable(true);
         mAdapter.notifyDataSetChanged();
@@ -473,7 +470,7 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
         
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            getActivity().getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+            getActivity().getMenuInflater().inflate(R.menu.actionbar_expense_menu, menu);
             itemSelectAll = menu.findItem(R.id.actionbar_selectall);
             itemDelete = menu.findItem(R.id.actionbar_delete);
             return true;
@@ -522,7 +519,7 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
     
     private void cleanActionMode() {
         mActionMode = null;
-        mCallback.onActionModeCallback(true);
+        mFAB.setVisibility(View.VISIBLE);
         mAdapter.setCheckable(false);
         mAdapter.setAllItemsChecked(false);
         mAdapter.notifyDataSetChanged();

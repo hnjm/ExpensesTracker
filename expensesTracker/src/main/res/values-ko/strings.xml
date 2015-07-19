@@ -33,7 +33,9 @@
     <string name="select_all">모두 선택</string>
     <string name="delete">제거</string>
     <string name="total">합계</string>
-    
+    <string name="set_limit">설정 제한</string>
+    <string name="set_period">설정 기간</string>
+
     <!-- Tracker -->
     <string name="limit_">한도:</string>
     <string name="spent">소요:</string>

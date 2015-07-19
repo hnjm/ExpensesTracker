@@ -25,10 +25,8 @@ android {
 
 dependencies {
     compile project(':holoGraphLibrary')
-    compile 'com.getbase:floatingactionbutton:1.9.0'
     compile 'com.google.android.gms:play-services:+'
-    compile 'com.android.support:support-v4:22.0.0'
-    compile 'com.android.support:appcompat-v7:22.1.0'
+    compile 'com.android.support:design:22.2.0'
     compile files('libs/acra-4.5.0.jar')
     compile files('libs/opencsv-2.1-1.0.0.jar')
     compile files('libs/poi-3.8-20120326.jar')

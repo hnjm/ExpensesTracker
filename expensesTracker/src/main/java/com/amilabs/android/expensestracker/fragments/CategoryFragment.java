@@ -4,7 +4,8 @@ import com.amilabs.android.expensestracker.R;
 import com.amilabs.android.expensestracker.adapter.CategoryListAdapter;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
 import com.amilabs.android.expensestracker.utils.Utils;
-import com.getbase.floatingactionbutton.FloatingActionButton;
+
+import android.support.design.widget.FloatingActionButton;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -23,6 +24,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,6 +49,7 @@ public class CategoryFragment extends Fragment implements LoaderCallbacks<Cursor
     private static final String TAG = "CategoryFragment";
     
     private ListView mListView;
+
     private TextView mEmptyView;
     private RelativeLayout mLayoutHeaderListView;
     private FloatingActionButton mFAB;
@@ -61,7 +64,7 @@ public class CategoryFragment extends Fragment implements LoaderCallbacks<Cursor
     // data supporting orientation change
     private boolean mIsNeededToRestore;
     private boolean[] mRestoreCheckedItemsArray;
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
@@ -82,27 +85,27 @@ public class CategoryFragment extends Fragment implements LoaderCallbacks<Cursor
 
         setHasOptionsMenu(true);
         mActionModeCallback = new ActionModeCallback();
-        
+
         mAdapter = new CategoryListAdapter(mContext, mDb.getCategoriesData());
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mActionMode != null)
-                	selectItem(view, position);
+                    selectItem(view, position);
                 else
                     showDialog(position);
             }
         });
         mListView.setOnItemLongClickListener(new OnItemLongClickListener() {
-        	@Override
-	        public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long arg3) {
-        		if (mActionMode == null)
-        			enableActionMode();
-	        	return false;
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long arg3) {
+                if (mActionMode == null)
+                    enableActionMode();
+                return false;
             }
-		});
-        
+        });
+
         mContext.getSupportLoaderManager().initLoader(mLoaderId, null, this);
         if (mContext.getSupportLoaderManager().getLoader(mLoaderId) == null) {
             mContext.getSupportLoaderManager().initLoader(mLoaderId, null, this);
@@ -178,7 +181,7 @@ public class CategoryFragment extends Fragment implements LoaderCallbacks<Cursor
                 return super.onOptionsItemSelected(item);
         }
     }
-    
+
     @Override
     public void onDestroyView() {
         if (mActionMode != null)
@@ -352,10 +355,10 @@ public class CategoryFragment extends Fragment implements LoaderCallbacks<Cursor
         
         private MenuItem itemSelectAll;
         private MenuItem itemDelete;
-        
+
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            mContext.getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+            mContext.getMenuInflater().inflate(R.menu.actionbar_category_menu, menu);
             itemSelectAll = menu.findItem(R.id.actionbar_selectall);
             itemDelete = menu.findItem(R.id.actionbar_delete);
             return true;

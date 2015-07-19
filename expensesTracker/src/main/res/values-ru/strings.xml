@@ -22,7 +22,9 @@
     <string name="edit_category">Изменить категорию</string>
     <string name="toast_empty_category">Введите категорию</string>
     <string name="toast_empty_limit">Введите лимит расходов</string>
-    
+    <string name="set_limit">Установить лимит</string>
+    <string name="set_period">Установить период</string>
+
     <!-- Expenses -->
     <string name="expenses">Расходы</string>
     <string name="add_expense">Добавить расход</string>

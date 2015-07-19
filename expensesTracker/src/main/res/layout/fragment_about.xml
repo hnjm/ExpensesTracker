@@ -20,7 +20,8 @@
 		        android:layout_height="wrap_content"
 		        android:text="@string/about_text"
 				android:gravity="center_horizontal"
-		        android:textSize="20sp"/>
+		        android:textSize="20sp"
+				android:textColor="@color/black"/>
 		    
 		    <TextView         
 		        android:id="@+id/tv_email"
@@ -35,14 +36,16 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:text="@string/about_copyright1"
-		        android:textSize="20sp"/>
+		        android:textSize="20sp"
+				android:textColor="@color/black"/>
 		    
 		    <TextView         
 		        android:id="@+id/tv_copyright2"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:text="@string/about_copyright2"
-		        android:textSize="20sp"/>
+		        android:textSize="20sp"
+				android:textColor="@color/black"/>
 		    
 		    <Button
 		        android:id="@+id/btn_rate_it"

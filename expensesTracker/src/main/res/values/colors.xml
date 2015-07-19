@@ -3,6 +3,7 @@
     <drawable name="pressed_color">#267490</drawable>
     <drawable name="drawer_color">#505050</drawable>
 
+    <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
     <color name="red">#FFFF0000</color>
     <color name="blue">#FF0000FF</color>
@@ -10,7 +11,8 @@
     <color name="orange">#FFFF7F00</color>
     <color name="purple">#FF4B0082</color>
     <color name="yellow">#FFE1D600</color>
-    <color name="gray">#FF8E888E</color>
+    <color name="gray">#FF212121</color>
+    <color name="dark_gray">#FF101010</color>
     <color name="light_gray">#FFC0C0C0</color>
     <color name="green_light">#FF99CC00</color>
     <color name="purple_light">#FF8F00FF</color>

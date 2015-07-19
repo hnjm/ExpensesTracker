@@ -22,6 +22,8 @@
     <string name="edit_category">Edit category</string>
     <string name="toast_empty_category">Enter a category</string>
     <string name="toast_empty_limit">Enter an amount limit</string>
+    <string name="set_limit">Set limit</string>
+    <string name="set_period">Set period</string>
     
     <!-- Expenses -->
     <string name="expenses">Expenses</string>

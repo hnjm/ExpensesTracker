@@ -4,12 +4,6 @@ import com.amilabs.android.expensestracker.R;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
 import com.amilabs.android.expensestracker.utils.SharedPref;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,12 +20,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class ExchangeRateTask extends AsyncTask<Void, Void, Boolean> {
 
     private static final String TAG = "ExchangeRateTask";
-    private static final String CURRENCY_RATE_REQUEST1 = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22";
-    private static final String CURRENCY_RATE_REQUEST2 = "%22)&env=store://datatables.org/alltableswithkeys&format=json";
+    private static final String CURRENCY_RATE_REQUEST1 = "https://query.yahooapis.com/v1/public/" +
+            "yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22";
+    private static final String CURRENCY_RATE_REQUEST2 = "%22)&env=store://datatables.org/" +
+            "alltableswithkeys&format=json";
     private Context context;
     private Spinner spinner;
     private static DatabaseHandler db;
@@ -47,12 +45,14 @@ public class ExchangeRateTask extends AsyncTask<Void, Void, Boolean> {
     }
 
     public boolean isNetworkReachable() {
-        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connMgr = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         NetworkInfo wimax = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIMAX);
         NetworkInfo dataNetwork = connMgr.getActiveNetworkInfo();
-        boolean wifiConnected = false, mobileConnected = false, wimaxConnected = false, dataNetworkConnected = false;
+        boolean wifiConnected = false, mobileConnected = false, wimaxConnected = false,
+                dataNetworkConnected = false;
         if (null != wifi)
             wifiConnected = wifi.isConnected();
         if (null != mobile)
@@ -66,18 +66,32 @@ public class ExchangeRateTask extends AsyncTask<Void, Void, Boolean> {
         return false;
     }
 
-    private String getJson(String url) throws ClientProtocolException, IOException {
-        StringBuilder build = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
-        HttpPost httpGet = new HttpPost(url);
-        HttpResponse response = client.execute(httpGet);
-        HttpEntity entity = response.getEntity();
-        InputStream content = entity.getContent();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-        String con;
-        while ((con = reader.readLine()) != null)
-            build.append(con);
-        return build.toString();
+    private String getJSON(String urlStr) throws IOException {
+        InputStream is = null;
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            conn.connect();
+            int response = conn.getResponseCode();
+            is = conn.getInputStream();
+            return readIt(is);
+        } finally {
+            if (is != null)
+                is.close();
+        }
+    }
+
+    private String readIt(InputStream stream) throws IOException {
+        BufferedReader r = new BufferedReader(new InputStreamReader(stream));
+        StringBuilder total = new StringBuilder();
+        String line;
+        while ((line = r.readLine()) != null)
+            total.append(line);
+        return total.toString();
     }
 
     @Override
@@ -94,16 +108,13 @@ public class ExchangeRateTask extends AsyncTask<Void, Void, Boolean> {
                 String from = SharedPref.getCurrency(context);
                 String to = spinner.getSelectedItem().toString();
                 String fullUrlStr = CURRENCY_RATE_REQUEST1 + from + to + CURRENCY_RATE_REQUEST2;
-                String s = getJson(fullUrlStr);
+                String s = getJSON(fullUrlStr);
                 double rate = new JSONObject(s).getJSONObject("query").getJSONObject("results")
                         .getJSONObject("rate").getDouble("Rate");
                 db.updateAllWithNewRate(rate);
             } else
                 result = false;
         } catch (JSONException e) {
-            Log.e(TAG, "Exception occurred in doInBackground(). ", e);
-            result = false;
-        } catch (ClientProtocolException e) {
             Log.e(TAG, "Exception occurred in doInBackground(). ", e);
             result = false;
         } catch (IOException e) {
