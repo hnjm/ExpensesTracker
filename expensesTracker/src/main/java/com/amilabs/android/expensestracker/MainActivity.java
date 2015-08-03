@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPref.setPremium(this, true);
         setContentView(R.layout.drawer);
 
         DatabaseHandler.getInstance(this).init();
@@ -104,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements
     private void initLayouts() {
         mDrawerListLayout = (LinearLayout) findViewById(R.id.drawer_list_layout);
         mUnlockLinearLayout = (LinearLayout) findViewById(R.id.ll_unlock);
-        mViewLine = (View) findViewById(R.id.line);
+        mViewLine = findViewById(R.id.line);
         if (SharedPref.isPremium(this)) {
             mUnlockLinearLayout.setVisibility(View.GONE);
             mViewLine.setVisibility(View.GONE);

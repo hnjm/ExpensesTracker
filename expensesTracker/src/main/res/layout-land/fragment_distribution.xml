@@ -42,6 +42,7 @@
         android:layout_centerVertical="true"
         android:text="@string/no_entries"
         android:textSize="38sp"
-        android:visibility="gone"/>
+		android:textColor="@color/black"
+		android:visibility="gone"/>
 	
 </RelativeLayout>

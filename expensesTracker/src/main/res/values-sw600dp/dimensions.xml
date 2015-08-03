@@ -4,7 +4,5 @@
     
     <dimen name="checkbox_right_margin">10dp</dimen>
     
-    <dimen name="drawer_content_padding">240dp</dimen>
-    
     <dimen name="cb_text_size">18sp</dimen>
 </resources>
