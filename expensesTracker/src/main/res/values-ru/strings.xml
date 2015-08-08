@@ -74,7 +74,7 @@
     
     <!-- About -->
     <string name="about">О приложении</string>
-    <string name="about_text"><b>Расходомер, v2.3</b>\n\nЭто финансовое приложение позволяет вести учет личных расходов.\n\nПожалуйста посылайте любые пожелания или предложения на </string>
+    <string name="about_text"><b>Расходомер, v2.5</b>\n\nЭто финансовое приложение позволяет вести учет личных расходов.\n\nПожалуйста посылайте любые пожелания или предложения на </string>
     <string name="about_email">amilien.labs@gmail.com.\n</string>
     <string name="about_copyright1">Copyright \u00A9 2014 AmiLabs.</string>
     <string name="about_copyright2">All rights reserved.\n</string>

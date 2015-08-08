@@ -5,6 +5,8 @@ import com.amilabs.android.expensestracker.database.DatabaseHandler;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
+import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -45,7 +47,7 @@ public class Utils {
     }
     
     public static String getStringDate(long date) {
-        return formatter.format(new Date(date)).toString();
+        return DateFormat.format("MM-dd-yyyy", date).toString();
     }
 
     public static Date getDate(String date) {

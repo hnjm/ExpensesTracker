@@ -74,7 +74,7 @@
     
     <!-- About -->
     <string name="about">About</string>
-    <string name="about_text"><b>ExpensesTracker, v2.3</b>\n\nThis financial tool allows you to keep track of your personal expenses.\n\nPlease send any suggestions or inquiries to </string>
+    <string name="about_text"><b>ExpensesTracker, v2.5</b>\n\nThis financial tool allows you to keep track of your personal expenses.\n\nPlease send any suggestions or inquiries to </string>
     <string name="about_email">amilien.labs@gmail.com.\n</string>
     <string name="about_copyright1">Copyright \u00A9 2014 AmiLabs.</string>
     <string name="about_copyright2">All rights reserved.\n</string>

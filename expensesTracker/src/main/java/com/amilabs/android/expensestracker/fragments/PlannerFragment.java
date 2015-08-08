@@ -108,13 +108,10 @@ public class PlannerFragment extends Fragment implements LoaderCallbacks<Cursor>
             SharedPref.saveDateFrom(mContext, dateFrom, TrackerType.PLANNER);
         }
         long dateTo = SharedPref.getDateTo(mContext, TrackerType.PLANNER);
-        Log.i(TAG, "dateTo="+dateTo);
         if (dateTo == 0) {
             dateTo = System.currentTimeMillis();
             SharedPref.saveDateTo(mContext, dateTo, TrackerType.PLANNER);
-            Log.i(TAG, "dateTo2=" + dateTo);
         }
-        Log.i(TAG, "dateTo3="+Utils.getStringDate(dateTo));
         mTvStartDate.setText(Utils.getStringDate(dateFrom));
         mTvFinishDate.setText(Utils.getStringDate(dateTo));
         mStartPeriodLayout.setOnClickListener(new OnClickListener() {
