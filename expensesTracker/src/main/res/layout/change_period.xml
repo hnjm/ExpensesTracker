@@ -2,7 +2,7 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="40dp"
+	android:layout_height="@dimen/bar_height"
  	android:layout_alignParentTop="true"
     android:background="@color/bar"
 	android:elevation="@dimen/header_elevation"

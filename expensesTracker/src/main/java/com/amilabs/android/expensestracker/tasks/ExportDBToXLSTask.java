@@ -16,8 +16,11 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.TextView;
 
 //import java.io.DataInputStream;
 import java.io.File;
@@ -36,17 +39,20 @@ public class ExportDBToXLSTask extends AsyncTask<Integer, Void, Boolean> {
     private Context context;
     private static DatabaseHandler mDb;
     private final ProgressDialog dialog;
+    private CoordinatorLayout coordinatorLayout;
     private File file;
 
-    public ExportDBToXLSTask(Context context) {
+    public ExportDBToXLSTask(Context context, CoordinatorLayout coordinatorLayout) {
         this.context = context;
         dialog = new ProgressDialog(context);
+        this.coordinatorLayout = coordinatorLayout;
     }
     
     @Override
     protected void onPreExecute() {
-        this.dialog.setMessage("Exporting to CSV...");
-        this.dialog.show();
+        dialog.setMessage("Exporting to CSV...");
+        dialog.setCancelable(false);
+        dialog.show();
     }
 
     @Override
@@ -139,9 +145,13 @@ public class ExportDBToXLSTask extends AsyncTask<Integer, Void, Boolean> {
     protected void onPostExecute(final Boolean success) {
         if (dialog.isShowing())
             dialog.dismiss();
-        if (success)
-            Toast.makeText(context, "Exported to " + file, Toast.LENGTH_LONG).show();
-        else
-            Toast.makeText(context, "Export failed", Toast.LENGTH_SHORT).show();
+        if (success) {
+            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Exported to " + file, Snackbar.LENGTH_LONG);
+            View snackbarView = snackbar.getView();
+            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setMaxLines(4);
+            snackbar.show();
+        } else
+            Snackbar.make(coordinatorLayout, "Export failed", Snackbar.LENGTH_LONG).show();
     }
 }

@@ -15,6 +15,7 @@ public class SharedPref implements Constants {
     private static final String PREF_PLANNER_DATE_TO = "PlannerDateTo";
     private static final String PREF_PERIODS = "Period";
     private static final String PREF_PREMIUM = "Premium";
+    private static final String PREF_DEFAULT_VALUES = "DefaultValues";
     private static final String PREF_SMS_FLAG = "isSmsEnabled";
     private static final String PREF_SMS_PHONE_NUMBER = "PhoneNumber";
     
@@ -69,19 +70,31 @@ public class SharedPref implements Constants {
             editor.putBoolean(PREF_PERIODS + i, values[i]);
         editor.commit();
     }
-    
+
     public static boolean isPremium(Context ctx) {
         SharedPreferences pref = ctx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         return pref.getBoolean(PREF_PREMIUM, false);
     }
-    
+
     public static void setPremium(Context ctx, boolean value) {
         SharedPreferences settings = ctx.getSharedPreferences(PREF_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(PREF_PREMIUM, value);
         editor.commit();
     }
-    
+
+    public static boolean isDefaultValuesUsed(Context ctx) {
+        SharedPreferences pref = ctx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        return pref.getBoolean(PREF_DEFAULT_VALUES, false);
+    }
+
+    public static void setDefaultValuesUsed(Context ctx, boolean value) {
+        SharedPreferences settings = ctx.getSharedPreferences(PREF_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(PREF_DEFAULT_VALUES, value);
+        editor.commit();
+    }
+
     public static boolean isSmsEnabled(Context ctx) {
         SharedPreferences pref = ctx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         return pref.getBoolean(PREF_SMS_FLAG, false);

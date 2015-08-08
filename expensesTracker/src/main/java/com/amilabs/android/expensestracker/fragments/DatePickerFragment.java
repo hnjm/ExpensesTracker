@@ -5,7 +5,9 @@ import com.amilabs.android.expensestracker.interfaces.OnDateSelectedListener;
 import com.amilabs.android.expensestracker.utils.SharedPref;
 import com.amilabs.android.expensestracker.utils.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -14,8 +16,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 public class DatePickerFragment extends DialogFragment implements OnDateSetListener, Constants {
 
@@ -57,7 +59,7 @@ public class DatePickerFragment extends DialogFragment implements OnDateSetListe
         dialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (which == DialogInterface.BUTTON_NEGATIVE) {
-                    mListener.onDialogDestroyed();
+                    mListener.onDialogDestroyed(null);
                     dialog.dismiss();
                 }
             }
@@ -67,7 +69,7 @@ public class DatePickerFragment extends DialogFragment implements OnDateSetListe
     
     @Override
     public void onCancel(DialogInterface dialog) {
-        mListener.onDialogDestroyed();
+        mListener.onDialogDestroyed(null);
     }
 
     @Override
@@ -76,26 +78,50 @@ public class DatePickerFragment extends DialogFragment implements OnDateSetListe
     	this.month = month;
     	this.day = day;
     	Calendar c = Calendar.getInstance();
-    	c.set(Calendar.DAY_OF_MONTH, day);
-    	c.set(Calendar.MONTH, month);
-    	c.set(Calendar.YEAR, this.year);
-    	long date = c.getTime().getTime();
-        if (trackerType != TrackerType.NONE) {
+        int todayYear = c.get(Calendar.YEAR);
+        int todayMonth = c.get(Calendar.MONTH);
+        int todayDay = c.get(Calendar.DAY_OF_MONTH);
+        c.set(Calendar.DAY_OF_MONTH, day);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.YEAR, this.year);
+        long date = c.getTime().getTime();
+        String error = null;
+        if (trackerType != TrackerType.NONE) { // planner/distribution fragment
             if (isFromBtn) {
                 long dateTo = SharedPref.getDateTo(view.getContext(), trackerType);
-                if (date > dateTo) {
+                int yearTo = Utils.get(dateTo, Calendar.YEAR);
+                int monthTo = Utils.get(dateTo, Calendar.MONTH);
+                int dayTo = Utils.get(dateTo, Calendar.DAY_OF_MONTH);
+                if (year > yearTo || month > monthTo ||
+                        (day >= dayTo && month == monthTo && year == yearTo)) {
+                    error = "Start date should be less than end date";
                     date = SharedPref.getDateFrom(view.getContext(), trackerType);
-                    Toast.makeText(view.getContext(), "Start date should be less than end date", Toast.LENGTH_SHORT).show();
+                } else if (year > todayYear || month > todayMonth ||
+                        (day > todayDay && month == todayMonth && year == todayYear)) {
+                    error = "Start date cannot be bigger than today date";
+                    date = SharedPref.getDateFrom(view.getContext(), trackerType);
                 }
             } else {
                 long dateFrom = SharedPref.getDateFrom(view.getContext(), trackerType);
-                if (date <= dateFrom) {
+                int yearFrom = Utils.get(dateFrom, Calendar.YEAR);
+                int monthFrom = Utils.get(dateFrom, Calendar.MONTH);
+                int dayFrom = Utils.get(dateFrom, Calendar.DAY_OF_MONTH);
+                if (year < yearFrom || month < monthFrom ||
+                        (day <= dayFrom && month == monthFrom && year == yearFrom)) {
                     date = SharedPref.getDateTo(view.getContext(), trackerType);
-                    Toast.makeText(view.getContext(), "End date should be bigger than start date", Toast.LENGTH_SHORT).show();
+                    error = "End date should be bigger than start date";
+                } else if (year > todayYear || month > todayMonth ||
+                        (day > todayDay && month == todayMonth && year == todayYear)) {
+                    error = "End date cannot be bigger than today date";
+                    date = SharedPref.getDateTo(view.getContext(), trackerType);
                 }
             }
+        } else { // add expense dialog
+            if (year > todayYear || month > todayMonth ||
+                    (day > todayDay && month == todayMonth && year == todayYear))
+                error = "Expense date cannot be bigger than today date";
         }
     	mListener.onDateSelected(date);
-        mListener.onDialogDestroyed();
+        mListener.onDialogDestroyed(error);
     }
 }

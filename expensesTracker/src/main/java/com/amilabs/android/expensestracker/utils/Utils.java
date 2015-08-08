@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Currency;
 import java.util.Date;
@@ -61,6 +62,12 @@ public class Utils {
         return getDate(getStringDate(date));
     }
 
+    public static int get(long time, int id) {
+        Calendar date = Calendar.getInstance();
+        date.setTimeInMillis(time);
+        return date.get(id);
+    }
+
     public static String getFormatted(double value) {
         return new DecimalFormat("#.#").format(value);
     }
@@ -69,7 +76,7 @@ public class Utils {
         return new DecimalFormat("#").format(value);
     }
     
-    public static float getScreenWidthInDP(Context context) {
+    /*public static float getScreenWidthInDP(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         Point size = new Point();
@@ -83,14 +90,14 @@ public class Utils {
         return width / Resources.getSystem().getDisplayMetrics().density;
     }
     
-    /*public static float getTextViewWidthInDP(TextView tv) {
+    public static float getTextViewWidthInDP(TextView tv) {
         Rect bounds = new Rect();
         Paint textPaint = tv.getPaint();
         textPaint.getTextBounds(tv.getText().toString(), 0, tv.getText().length(), bounds);
         return bounds.width() / Resources.getSystem().getDisplayMetrics().density;
-    }*/
+    }
 
     public static int getPixels(float dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
-    }
+    }*/
 }

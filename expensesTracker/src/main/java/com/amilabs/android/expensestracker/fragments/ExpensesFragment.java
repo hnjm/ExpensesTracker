@@ -70,7 +70,7 @@ public class ExpensesFragment extends Fragment implements OnDateSelectedListener
             mViewPager.setAdapter(mAdapter);
             mViewPager.setOffscreenPageLimit(2);
             mViewPager.setCurrentItem(mAdapter.currentPosition);
-            mViewPager.setOnPageChangeListener(mAdapter);
+            mViewPager.addOnPageChangeListener(mAdapter);
             //setRetainInstance(true);
         }
         return rootView;
@@ -99,8 +99,8 @@ public class ExpensesFragment extends Fragment implements OnDateSelectedListener
     }
 
     @Override
-    public void onDialogDestroyed() {
-        mAdapter.fragments.get(mAdapter.currentPosition).onDialogDestroyed();
+    public void onDialogDestroyed(String error) {
+        mAdapter.fragments.get(mAdapter.currentPosition).onDialogDestroyed(error);
     }
     
     @Override

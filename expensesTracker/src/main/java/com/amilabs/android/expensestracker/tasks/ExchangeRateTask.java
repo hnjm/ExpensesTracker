@@ -12,9 +12,10 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,13 +33,16 @@ public class ExchangeRateTask extends AsyncTask<Void, Void, Boolean> {
             "alltableswithkeys&format=json";
     private Context context;
     private Spinner spinner;
+    private CoordinatorLayout coordinatorLayoutView;
     private static DatabaseHandler db;
     private final ProgressDialog dialog;
     private int previousPosition;
+    private String to;
 
-    public ExchangeRateTask(Context context, Spinner spinner, int previousPosition) {
+    public ExchangeRateTask(Context context, Spinner spinner, CoordinatorLayout coordinatorLayoutView, int previousPosition) {
         this.context = context;
         this.spinner = spinner;
+        this.coordinatorLayoutView = coordinatorLayoutView;
         this.previousPosition = previousPosition;
         db = DatabaseHandler.getInstance(context);
         dialog = new ProgressDialog(context);
@@ -96,8 +100,10 @@ public class ExchangeRateTask extends AsyncTask<Void, Void, Boolean> {
 
     @Override
     protected void onPreExecute() {
-        this.dialog.setMessage("Calculating new currency rate...");
-        this.dialog.show();
+        dialog.setMessage("Calculating new currency rate...");
+        dialog.setCancelable(false);
+        dialog.show();
+        to = spinner.getSelectedItem().toString().substring(0, 3);
     }
 
     @Override
@@ -106,7 +112,6 @@ public class ExchangeRateTask extends AsyncTask<Void, Void, Boolean> {
         try {
             if (isNetworkReachable()) {
                 String from = SharedPref.getCurrency(context);
-                String to = spinner.getSelectedItem().toString();
                 String fullUrlStr = CURRENCY_RATE_REQUEST1 + from + to + CURRENCY_RATE_REQUEST2;
                 String s = getJSON(fullUrlStr);
                 double rate = new JSONObject(s).getJSONObject("query").getJSONObject("results")
@@ -129,10 +134,10 @@ public class ExchangeRateTask extends AsyncTask<Void, Void, Boolean> {
         if (dialog.isShowing())
             dialog.dismiss();
         if (success || (db.getCategoriesCount() == 0 && db.getExpensesDataCount() == 0))
-            SharedPref.saveCurrency(context, spinner.getSelectedItem().toString());
+            SharedPref.saveCurrency(context, spinner.getSelectedItem().toString().substring(0, 3));
         else {
             spinner.setSelection(previousPosition);
-            Toast.makeText(context, R.string.exchange_rate_failed, Toast.LENGTH_SHORT).show();
+            Snackbar.make(coordinatorLayoutView, R.string.exchange_rate_failed, Snackbar.LENGTH_LONG).show();
         }
     }
 

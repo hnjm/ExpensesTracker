@@ -5,6 +5,7 @@ import com.amilabs.android.expensestracker.fragments.adapters.CategoryListAdapte
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
 import com.amilabs.android.expensestracker.utils.Utils;
 
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 
 import android.app.Activity;
@@ -14,6 +15,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -40,7 +42,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class CategoryFragment extends Fragment implements LoaderCallbacks<Cursor> {
@@ -48,7 +49,7 @@ public class CategoryFragment extends Fragment implements LoaderCallbacks<Cursor
     private static final String TAG = "CategoryFragment";
     
     private ListView mListView;
-
+    private CoordinatorLayout mCoordinatorLayout;
     private TextView mEmptyView;
     private RelativeLayout mLayoutHeaderListView;
     private FloatingActionButton mFAB;
@@ -68,6 +69,7 @@ public class CategoryFragment extends Fragment implements LoaderCallbacks<Cursor
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_category, container, false);
+        mCoordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.coordinator_layout);
         mLayoutHeaderListView = (RelativeLayout) rootView.findViewById(R.id.category_header_layout);
         mListView = (ListView) rootView.findViewById(android.R.id.list);
         mEmptyView = (TextView) rootView.findViewById(R.id.empty_view);
@@ -319,9 +321,9 @@ public class CategoryFragment extends Fragment implements LoaderCallbacks<Cursor
                             String name = categoryName.getText().toString();
                             String limit = categoryLimitEditText.getText().toString();
                             if (name.trim().equals(""))
-                                Toast.makeText(fragment.mContext, R.string.toast_empty_category, Toast.LENGTH_SHORT).show();
+                                Snackbar.make(fragment.mCoordinatorLayout, R.string.toast_empty_category, Snackbar.LENGTH_LONG).show();
                             else if (limit.trim().equals(""))
-                                Toast.makeText(fragment.mContext, R.string.toast_empty_limit, Toast.LENGTH_SHORT).show();
+                                Snackbar.make(fragment.mCoordinatorLayout, R.string.toast_empty_limit, Snackbar.LENGTH_LONG).show();
                             else {
                                 if (itemId >= 0)
                                     updateEntry(name, limit, (String) period.getSelectedItem());

@@ -13,7 +13,9 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -41,7 +43,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
@@ -57,6 +58,7 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
     private int mLoaderId;
     
     private ListView mListView;
+    private CoordinatorLayout mCoordinatorLayout;
     private TextView mEmptyView, mTvTotalView;
     private RelativeLayout mTotalLayout;
     private FloatingActionButton mFAB;
@@ -95,6 +97,7 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
     public void onViewCreated(View view, Bundle savedInstanceState) {
         //Log.d(TAG, "onViewCreated: pos = " + mLoaderId);
         mListView = getListView();
+        mCoordinatorLayout = (CoordinatorLayout) view.findViewById(R.id.coordinator_layout);
         mEmptyView = (TextView) view.findViewById(R.id.empty_view);
         mTotalLayout = (RelativeLayout) view.findViewById(R.id.total_layout);
         mTvTotalView = (TextView) view.findViewById(R.id.tv_total);
@@ -164,7 +167,10 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
             mFAB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showDialog(Utils.NEW_ENTRY_ID);
+                    if (DatabaseHandler.getInstance(getActivity()).getCategoriesCount() == 0)
+                        Snackbar.make(mCoordinatorLayout, "Please add categories first", Snackbar.LENGTH_LONG).show();
+                    else
+                        showDialog(Utils.NEW_ENTRY_ID);
                 }
             });
             getActivity().supportInvalidateOptionsMenu();
@@ -295,9 +301,11 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
         AddEditExpensesDialogFragment.btnDate.setText(dateString);
     }
     
-    public void onDialogDestroyed() {
+    public void onDialogDestroyed(String error) {
         //Log.d(TAG, "onDialogDestroyed [" + mLoaderId + "], FALSE");
         mIsDateDialogShown = false;
+        if (error != null)
+            Snackbar.make(mCoordinatorLayout, error, Snackbar.LENGTH_LONG).show();
     }
     
     public void showDialog(int position) {
@@ -408,7 +416,7 @@ public class ExpensesDetailsFragment extends ListFragment implements LoaderCallb
                             String expense = etExpenseAmount.getText().toString();
                             String details = etExpenseDetails.getText().toString();
                             if (expense.trim().equals(""))
-                                Toast.makeText(getActivity(), R.string.toast_empty_amount, Toast.LENGTH_SHORT).show();
+                                Snackbar.make(fragment.mCoordinatorLayout, R.string.toast_empty_amount, Snackbar.LENGTH_LONG).show();
                             else {
                                 if (itemId >= 0)
                                     updateEntry(expense, category.getSelectedItem().toString(), details);

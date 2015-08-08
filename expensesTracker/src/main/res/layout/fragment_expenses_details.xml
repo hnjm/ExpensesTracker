@@ -1,56 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:background="@color/bg_list_color"
+	android:id="@+id/coordinator_layout"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-    
-	<ListView
-        android:id="@android:id/list"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="40dp"/>
-    
-	<TextView
-        android:id="@+id/empty_view"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/no_entries"
-        android:textSize="38sp"
-		android:textColor="@color/black"
-        android:visibility="gone"/>
-	
+
 	<RelativeLayout
-	    android:id="@+id/total_layout"
+		android:id="@+id/root_layout"
 		android:layout_width="match_parent"
-		android:background="@color/bar"
-	 	android:layout_alignParentBottom="true"
-		android:layout_height="40dp">
-		
-	    <TextView
-	    	android:id="@+id/tv_total"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	 		android:layout_centerVertical="true"
-	 		android:layout_marginLeft="10dp"
-	        android:textColor="@color/black"
-	        android:textSize="18sp">
-	    </TextView>
-			 	    
+		android:layout_height="match_parent"
+		android:background="@color/white">
+
+		<ListView
+			android:id="@android:id/list"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginBottom="@dimen/bar_height"/>
+
+		<TextView
+			android:id="@+id/empty_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:layout_centerHorizontal="true"
+			android:layout_centerVertical="true"
+			android:text="@string/no_entries"
+			android:textSize="38sp"
+			android:textColor="@color/black"
+			android:visibility="gone"/>
+
+		<include layout="@layout/total_bar"/>
+
 	</RelativeLayout>
 
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/fab"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:layout_alignParentRight="true"
 		android:layout_marginBottom="@dimen/fab_margin"
 		android:layout_marginRight="@dimen/fab_margin"
+		android:layout_gravity="bottom|right"
+		app:layout_anchorGravity="bottom|right|end"
+		app:layout_anchor="@id/root_layout"
 		android:src="@drawable/ic_fab"
 		app:elevation="@dimen/fab_elevation"
 		app:borderWidth="0dp"
@@ -58,4 +50,4 @@
 		app:backgroundTint="@color/pink"
 		android:contentDescription="@string/add_expense"/>
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

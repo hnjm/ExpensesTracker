@@ -25,7 +25,6 @@
     <color name="main_menu_background">#303030</color>
     <color name="holo_red_dark">#ffcc0000</color>
     <color name="row_color">#EEEEEE</color>
-    <color name="bg_list_color">#FFFFFF</color>
 
     <color name="pink">#e91e63</color>
     <color name="pink_pressed">#ec407a</color>

@@ -3,19 +3,22 @@ package com.amilabs.android.expensestracker.tasks;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
+import android.os.Build;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.amilabs.android.expensestracker.R;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
+import com.amilabs.android.expensestracker.fragments.adapters.CurrencyAdapter;
 import com.amilabs.android.expensestracker.utils.SharedPref;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class CurrencyTask extends AsyncTask<Void, Void, List<CharSequence>> {
 
@@ -23,42 +26,51 @@ public class CurrencyTask extends AsyncTask<Void, Void, List<CharSequence>> {
 
     private Context context;
     private Spinner spinner;
-    private ArrayAdapter<CharSequence> adapter;
-    private static DatabaseHandler db;
+    private CoordinatorLayout coordinatorLayoutView;
+    private CurrencyAdapter<CharSequence> adapter;
     private final ProgressDialog dialog;
 
-    public CurrencyTask(Context context, Spinner spinner, ArrayAdapter<CharSequence> adapter) {
+    public CurrencyTask(Context context, Spinner spinner, CoordinatorLayout coordinatorLayoutView, CurrencyAdapter<CharSequence> adapter) {
         this.context = context;
         this.spinner = spinner;
+        this.coordinatorLayoutView = coordinatorLayoutView;
         this.adapter = adapter;
-        db = DatabaseHandler.getInstance(context);
         dialog = new ProgressDialog(context);
     }
 
     @Override
     protected void onPreExecute() {
-        this.dialog.setMessage("Retrieving available currency list...");
-        this.dialog.show();
+        dialog.setMessage("Retrieving available currency list...");
+        dialog.setCancelable(false);
+        dialog.show();
     }
 
     @Override
     protected List<CharSequence> doInBackground(final Void... args) {
         List<CharSequence> retList = new ArrayList<CharSequence>();
         if (DatabaseHandler.getInstance(context).isCurrencyListEmpty()) {
-            List<String> list = new ArrayList<String>();
+            Map<String, String> map = new TreeMap<>();
             Locale[] locs = Locale.getAvailableLocales();
             for (Locale loc: locs) {
                 try {
-                    String currency = Currency.getInstance(loc).toString();
-                    if (!list.contains(currency))
-                        list.add(currency);
+                    Currency currency = Currency.getInstance(loc);
+                    String curr = currency.toString();
+                    String symbol = currency.getSymbol(loc);
+                    String description = ", " + symbol;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        String name = currency.getDisplayName(loc);
+                        if (curr.equals("USD"))
+                            name = "US dollar";
+                        description = ", " + symbol + " (" + name + ")";
+                    }
+                    if (!map.containsKey(curr))
+                        map.put(curr, description);
                 } catch(Exception e) {
                 }
             }
-            Collections.sort(list);
-            DatabaseHandler.getInstance(context).setCurrencyList(list);
-            for (String s: list)
-                retList.add(s);
+            for (Map.Entry<String, String> entry: map.entrySet())
+                retList.add(entry.getKey() + entry.getValue());
+            DatabaseHandler.getInstance(context).setCurrencyList(retList);
         } else {
             retList = DatabaseHandler.getInstance(context).getCurrencyList();
         }
@@ -70,9 +82,9 @@ public class CurrencyTask extends AsyncTask<Void, Void, List<CharSequence>> {
         if (dialog.isShowing())
             dialog.dismiss();
         if (currencyList == null || currencyList.size() == 0)
-            Toast.makeText(context, R.string.currency_failed, Toast.LENGTH_SHORT).show();
+            Snackbar.make(coordinatorLayoutView, R.string.currency_failed, Snackbar.LENGTH_LONG).show();
         else {
-            adapter.addAll(currencyList);
+            adapter.setItems(currencyList);
             spinner.setSelection(adapter.getPosition(SharedPref.getCurrency(context)), false);
         }
     }

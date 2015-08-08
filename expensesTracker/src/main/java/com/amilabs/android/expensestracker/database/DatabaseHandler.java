@@ -40,23 +40,18 @@ public class DatabaseHandler implements Constants {
     }
 
     private void initDB() {
-        // init default time ranges
-        boolean[] values = SharedPref.getPeriods(context);
-        int counter = 0;
-        for (boolean value: values)
-            if (!value)
-                counter++;
-        if (counter == values.length) {
+        if (!SharedPref.isDefaultValuesUsed(context)) {
+            // init default time ranges
+            boolean[] values = SharedPref.getPeriods(context);
             for (int i = 0; i < values.length; i++)
                 values[i] = i == 0 || i == 3 || i == 7;
             SharedPref.savePeriods(context, values);
-        }
-        // init default categories
-        if (getCategoriesCount() == 0) {
+            // init default categories
             String[] defaultCategories = context.getResources().getStringArray(R.array.category);
             for (int i = 0; i < defaultCategories.length - 1; i++) {
-                addCategory(defaultCategories[i], 100, WEEK);
+                addCategory(defaultCategories[i], 100, MONTH);
             }
+            SharedPref.setDefaultValuesUsed(context, true);
         }
     }
     
@@ -155,20 +150,42 @@ public class DatabaseHandler implements Constants {
                 "where c._id = e.category_id and e.date >= " + dateFrom + " and e.date <= " + dateTo +
                 " and c.name = '" + category + "' order by e.date;", null);
     }
-    
+
     public Cursor getExpensesByCategories(ArrayList<String> categories, long dateFrom, long dateTo) {
-    	String names = "(";
-    	for (int i = 0; i < categories.size(); i++) {
-    		if (i == categories.size() - 1)
-    			names += "'" + categories.get(i) + "')";
-    		else
-    			names += "'" + categories.get(i) + "',";
-    	}
+        String names = "(";
+        for (int i = 0; i < categories.size(); i++) {
+            if (i == categories.size() - 1)
+                names += "'" + categories.get(i) + "')";
+            else
+                names += "'" + categories.get(i) + "',";
+        }
         return database.rawQuery("select e._id, e.date, c.name, e.expense, e.details from EXPENSES e, CATEGORIES c " +
                 "where c._id = e.category_id and e.date >= " + dateFrom + " and e.date <= " + dateTo +
                 " and c.name in " + names + " order by e.date;", null);
     }
-    
+
+    private List<Integer> getExpensesByCategories(List<Integer> categoryIds) {
+        List<Integer> listIds = new ArrayList<>();
+        String ids = "(";
+        for (int i = 0; i < categoryIds.size(); i++) {
+            if (i == categoryIds.size() - 1)
+                ids += "'" + categoryIds.get(i) + "')";
+            else
+                ids += "'" + categoryIds.get(i) + "',";
+        }
+        Cursor c = database.rawQuery("select e._id, e.date, c.name, e.expense, e.details from EXPENSES e, CATEGORIES c " +
+                "where c._id = e.category_id and c._id in " + ids + " order by e.date;", null);
+        if (c != null) {
+            if (c.moveToFirst()) {
+                do {
+                    listIds.add(c.getInt(c.getColumnIndex(Data.Expenses.ID)));
+                } while (c.moveToNext());
+            }
+            c.close();
+        }
+        return listIds;
+    }
+
     public float getTotalExpensesByCategory(String category, long dateFrom, long dateTo) {
         float res = 0;
         Cursor c = database.rawQuery("select e.expense from EXPENSES e, CATEGORIES c " +
@@ -408,17 +425,30 @@ public class DatabaseHandler implements Constants {
             Log.e(TAG, "Error occurred during updating data (category) into DB "+name);
     }
     
-    public void deleteCategory(List<Integer> ids) {
-        String selection = Data.Categories.ID + " in (";
-        for (int i = 0; i < ids.size(); i++) {
-            if (i != ids.size() - 1)
-                selection += ids.get(i) + ", ";
+    public void deleteCategory(List<Integer> categoryIds) {
+        List<Integer> expensesIds = new ArrayList<>();
+        String selectionCategory = Data.Categories.ID + " in (";
+        String selectionExpenses = Data.Expenses.ID + " in (";
+        for (int i = 0; i < categoryIds.size(); i++) {
+            int categoryId = categoryIds.get(i);
+            if (i != categoryIds.size() - 1)
+                selectionCategory += categoryId + ", ";
             else
-                selection += ids.get(i) + ")";
+                selectionCategory += categoryId + ")";
+            expensesIds.addAll(getExpensesByCategories(categoryIds));
         }
-        int rows = database.delete(Data.Categories.TABLE_NAME, selection, null);
+        for (int i = 0; i < expensesIds.size(); i++) {
+            int expenseId = expensesIds.get(i);
+            if (i != expensesIds.size() - 1)
+                selectionExpenses += expenseId + ", ";
+            else
+                selectionExpenses += expenseId + ")";
+        }
+        if (expensesIds.size() > 0)
+            database.delete(Data.Expenses.TABLE_NAME, selectionExpenses, null);
+        int rows = database.delete(Data.Categories.TABLE_NAME, selectionCategory, null);
         if (rows == 0)
-            Log.e(TAG, "No rows deleted");
+            Log.e(TAG, "No rows deleted in " + Data.Categories.TABLE_NAME);
     }
     
     public boolean isCurrencyListEmpty() {
@@ -431,10 +461,10 @@ public class DatabaseHandler implements Constants {
         return res;
     }
     
-    public void setCurrencyList(List<String> list) {
+    public void setCurrencyList(List<CharSequence> list) {
         ContentValues values = new ContentValues();
-        for (String s: list) {
-            values.put(Data.Currencies.NAME, s);
+        for (CharSequence s: list) {
+            values.put(Data.Currencies.NAME, s.toString());
             long insertId = database.insert(Data.Currencies.TABLE_NAME, null, values);
             if (insertId == -1)
                 Log.e(TAG, "Error occurred during inserting data (currencies) into DB "+s);

@@ -12,6 +12,8 @@ import com.amilabs.android.expensestracker.utils.Utils;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -45,6 +47,7 @@ public class PlannerFragment extends Fragment implements LoaderCallbacks<Cursor>
     private final static int mLoaderId = -2;
 
     private TransactionsFragment mTransactionsFragment;
+    private CoordinatorLayout mCoordinatorLayout;
     private ListView mListView;
     private RelativeLayout mStartPeriodLayout;
     private RelativeLayout mFinishPeriodLayout;
@@ -59,6 +62,7 @@ public class PlannerFragment extends Fragment implements LoaderCallbacks<Cursor>
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
         final View rootView = inflater.inflate(R.layout.fragment_planner, container, false);
+        mCoordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.coordinator_layout);
         mListView = (ListView) rootView.findViewById(android.R.id.list);
         mEmptyView = (TextView) rootView.findViewById(R.id.empty_view);
         mStartPeriodLayout = (RelativeLayout) rootView.findViewById(R.id.start_period_layout);
@@ -82,7 +86,7 @@ public class PlannerFragment extends Fragment implements LoaderCallbacks<Cursor>
                 args.putBoolean("isFromDistribution", false);
                 args.putString(TAG_FRAGMENT_CATEGORY, mAdapter.getCategory(position));
                 mTransactionsFragment.setArguments(args);
-                mContext.getSupportFragmentManager().beginTransaction().replace(R.id.planner_layout,
+                mContext.getSupportFragmentManager().beginTransaction().replace(R.id.coordinator_layout,
                 		mTransactionsFragment, TAG_FRAGMENT_TRANSACTIONS).addToBackStack(TAG_FRAGMENT_PLANNER).commit();
                 mIsTransactionsFragmentShown = true;
             }
@@ -104,10 +108,13 @@ public class PlannerFragment extends Fragment implements LoaderCallbacks<Cursor>
             SharedPref.saveDateFrom(mContext, dateFrom, TrackerType.PLANNER);
         }
         long dateTo = SharedPref.getDateTo(mContext, TrackerType.PLANNER);
+        Log.i(TAG, "dateTo="+dateTo);
         if (dateTo == 0) {
             dateTo = System.currentTimeMillis();
             SharedPref.saveDateTo(mContext, dateTo, TrackerType.PLANNER);
+            Log.i(TAG, "dateTo2=" + dateTo);
         }
+        Log.i(TAG, "dateTo3="+Utils.getStringDate(dateTo));
         mTvStartDate.setText(Utils.getStringDate(dateFrom));
         mTvFinishDate.setText(Utils.getStringDate(dateTo));
         mStartPeriodLayout.setOnClickListener(new OnClickListener() {
@@ -220,9 +227,11 @@ public class PlannerFragment extends Fragment implements LoaderCallbacks<Cursor>
     }
 
     @Override
-    public void onDialogDestroyed() {
+    public void onDialogDestroyed(String error) {
         Log.d(TAG, "onDialogDestroyed [" + mLoaderId + "], mIsDateDialogShown = false");
         mIsDateDialogShown = false;
+        if (error != null)
+            Snackbar.make(mCoordinatorLayout, error, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

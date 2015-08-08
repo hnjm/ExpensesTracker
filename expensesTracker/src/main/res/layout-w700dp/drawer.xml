@@ -71,7 +71,7 @@
 		       		android:paddingLeft="@dimen/main_menu_item_text_padding_left"
 		            android:text="@string/pro"
 		            android:textSize="@dimen/main_menu_item_text_size"
-		            android:textColor="@color/bg_list_color"
+		            android:textColor="@color/white"
 		            android:singleLine="true"
 		            android:ellipsize="end"/>
 			

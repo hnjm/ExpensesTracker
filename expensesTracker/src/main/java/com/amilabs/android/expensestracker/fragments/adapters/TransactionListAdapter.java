@@ -50,7 +50,7 @@ public class TransactionListAdapter extends SimpleCursorAdapter {
                     + " " + SharedPref.getCurrency(context));
         }
         ((RelativeLayout)holder.tvDate.getParent()).setBackgroundColor(
-                context.getResources().getColor(position % 2 == 0 ? R.color.row_color : R.color.bg_list_color));
+                context.getResources().getColor(position % 2 == 0 ? R.color.row_color : R.color.white));
 
         return convertView;
     }

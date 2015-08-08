@@ -1,41 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/distribution_layout"
+    android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/change_period"/>
-    
-    <com.echo.holographlibrary.PieGraph
-        android:id="@+id/piegraph"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="15dp"
-        app:pieInnerCircleRatio="165"
-        app:pieSlicePadding="0dp"/>
+        android:layout_height="match_parent">
 
-	<ListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/piegraph"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"/>
-   
-	<TextView
-        android:id="@+id/empty_view"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/no_entries"
-        android:textSize="38sp"
-        android:textColor="@color/black"
-        android:visibility="gone"/>
-	
-</RelativeLayout>
+        <include layout="@layout/change_period"/>
+
+        <com.echo.holographlibrary.PieGraph
+            android:id="@+id/piegraph"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            app:pieInnerCircleRatio="165"
+            app:pieSlicePadding="0dp"/>
+
+        <LinearLayout
+            android:id="@+id/list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/piegraph"
+            android:layout_marginBottom="45dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/shadow">
+
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:choiceMode="singleChoice"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="0dp"/>
+
+        </LinearLayout>
+
+        <include layout="@layout/total_bar"/>
+
+        <TextView
+            android:id="@+id/empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/no_entries"
+            android:textSize="38sp"
+            android:textColor="@color/black"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

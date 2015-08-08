@@ -171,8 +171,8 @@ public class MainActivity extends AppCompatActivity implements
     }
     
     @Override
-    public void onDialogDestroyed() {
-        ((OnDateSelectedListener) mFragment).onDialogDestroyed();
+    public void onDialogDestroyed(String error) {
+        ((OnDateSelectedListener) mFragment).onDialogDestroyed(error);
     }
     
     @Override
@@ -250,7 +250,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-    	if (getSupportFragmentManager().getBackStackEntryCount() != 0)
+        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mDrawerListLayout))
+            mDrawerLayout.closeDrawer(mDrawerListLayout);
+        else if (getSupportFragmentManager().getBackStackEntryCount() != 0)
     		getSupportFragmentManager().popBackStackImmediate();
     	else {
             if (mSelectedItem == ID_FRAGMENT_EXPENSES) {

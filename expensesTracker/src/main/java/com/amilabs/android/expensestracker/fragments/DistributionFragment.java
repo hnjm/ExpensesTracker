@@ -8,6 +8,8 @@ import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,6 +28,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -60,11 +63,14 @@ public class DistributionFragment extends Fragment implements LoaderCallbacks<Li
     
     private static ArrayList<String> mOtherCategories = new ArrayList<String>();
     private TransactionsFragment mTransactionsFragment;
+    private CoordinatorLayout mCoordinatorLayout;
     private ListView mListView;
-    private RelativeLayout mStartPeriodLayout;
-    private RelativeLayout mFinishPeriodLayout;
+    private RelativeLayout mStartPeriodLayout, mFinishPeriodLayout;
+    private RelativeLayout mTotalLayout;
+    private LinearLayout mListLayout;
     private TextView mEmptyView;
     private TextView mTvStartDate, mTvFinishDate;
+    private TextView mTvTotalView;
     private PieGraph mPieGraph;
     // data for supporting orientation change
     private boolean mIsDateDialogShown;
@@ -74,14 +80,18 @@ public class DistributionFragment extends Fragment implements LoaderCallbacks<Li
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_distribution, container, false);
+        mCoordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.coordinator_layout);
         mListView = (ListView) rootView.findViewById(android.R.id.list);
         mEmptyView = (TextView) rootView.findViewById(R.id.empty_view);
         mStartPeriodLayout = (RelativeLayout) rootView.findViewById(R.id.start_period_layout);
         mFinishPeriodLayout = (RelativeLayout) rootView.findViewById(R.id.finish_period_layout);
+        mTotalLayout = (RelativeLayout) rootView.findViewById(R.id.total_layout);
+        mListLayout = (LinearLayout) rootView.findViewById(R.id.list_layout);
         mTvStartDate = (TextView) rootView.findViewById(R.id.tv_start_period);
         mTvFinishDate = (TextView) rootView.findViewById(R.id.tv_finish_period);
+        mTvTotalView = (TextView) rootView.findViewById(R.id.tv_total);
         mPieGraph = (PieGraph) rootView.findViewById(R.id.piegraph);
-        
+
         mContext = (AppCompatActivity) getActivity();
         mDb = DatabaseHandler.getInstance(mContext);
 
@@ -90,7 +100,7 @@ public class DistributionFragment extends Fragment implements LoaderCallbacks<Li
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            	switchToTransactionsFragment(position);
+                switchToTransactionsFragment(position);
             }
         });
 
@@ -155,18 +165,32 @@ public class DistributionFragment extends Fragment implements LoaderCallbacks<Li
             if (isFetchedDataEmpty()) {
             	mPieGraph.setVisibility(View.GONE);
                 mListView.setVisibility(View.GONE);
+                mTotalLayout.setVisibility(View.GONE);
+                mListLayout.setVisibility(View.GONE);
                 mEmptyView.setVisibility(View.VISIBLE);
             } else {
             	mPieGraph.setVisibility(View.VISIBLE);
                 mListView.setVisibility(View.VISIBLE);
+                mTotalLayout.setVisibility(View.VISIBLE);
+                mListLayout.setVisibility(View.VISIBLE);
                 mEmptyView.setVisibility(View.GONE);
+                updateTotal();
             }
             mStartPeriodLayout.setVisibility(View.VISIBLE);
             mFinishPeriodLayout.setVisibility(View.VISIBLE);
             mContext.setTitle(getString(R.string.distribution));
         }
     }
-    
+
+    private void updateTotal() {
+        long dateFrom = SharedPref.getDateFrom(mContext, TrackerType.DISTRIBUTION);
+        dateFrom = Utils.getFreshDate(mContext, dateFrom);
+        long dateTo = SharedPref.getDateTo(mContext, TrackerType.DISTRIBUTION);
+        dateTo = Utils.getFreshDate(mContext, dateTo);
+        mTvTotalView.setText(getString(R.string.total) + ": " +
+                Utils.getFormatted(mDb.getTotalExpenses(dateFrom, dateTo)) + " " + SharedPref.getCurrency(mContext));
+    }
+
     private boolean isFetchedDataEmpty() {
     	return mDb.getSpentOnCategories(mContext, TrackerType.DISTRIBUTION).getCount() == 0;
     }
@@ -225,9 +249,11 @@ public class DistributionFragment extends Fragment implements LoaderCallbacks<Li
     }
     
     @Override
-    public void onDialogDestroyed() {
+    public void onDialogDestroyed(String error) {
         //Log.d(TAG, "onDialogDestroyed [" + mLoaderId + "], mIsDateDialogShown = false");
         mIsDateDialogShown = false;
+        if (error != null)
+            Snackbar.make(mCoordinatorLayout, error, Snackbar.LENGTH_LONG).show();
     }
     
     @Override
@@ -363,7 +389,7 @@ public class DistributionFragment extends Fragment implements LoaderCallbacks<Li
         args.putBoolean("isFromDistribution", true);
         args.putStringArrayList("other_categories", mOtherCategories);
         mTransactionsFragment.setArguments(args);
-        mContext.getSupportFragmentManager().beginTransaction().replace(R.id.distribution_layout, 
+        mContext.getSupportFragmentManager().beginTransaction().replace(R.id.coordinator_layout,
                 mTransactionsFragment, TAG_FRAGMENT_TRANSACTIONS).addToBackStack(TAG_FRAGMENT_DISTRIBUTION).commit();
         mIsTransactionsFragmentShown = true;
     }

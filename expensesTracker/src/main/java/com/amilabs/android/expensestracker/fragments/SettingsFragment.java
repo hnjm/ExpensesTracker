@@ -2,7 +2,7 @@ package com.amilabs.android.expensestracker.fragments;
 
 import com.amilabs.android.expensestracker.R;
 import com.amilabs.android.expensestracker.database.DatabaseHandler;
-import com.amilabs.android.expensestracker.fragments.HelpDialogFragment;
+import com.amilabs.android.expensestracker.fragments.adapters.CurrencyAdapter;
 import com.amilabs.android.expensestracker.interfaces.Constants;
 import com.amilabs.android.expensestracker.tasks.CurrencyTask;
 import com.amilabs.android.expensestracker.tasks.ExchangeRateTask;
@@ -10,6 +10,7 @@ import com.amilabs.android.expensestracker.tasks.ExportDBToXLSTask;
 import com.amilabs.android.expensestracker.utils.SharedPref;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class SettingsFragment extends Fragment implements Constants {
         mContext = (AppCompatActivity) getActivity();
         mDb = DatabaseHandler.getInstance(mContext);
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
+        final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.coordinator_layout);
 
         // time ranges
         mPeriods.add((CheckBox) rootView.findViewById(R.id.cb_1week));
@@ -58,7 +60,7 @@ public class SettingsFragment extends Fragment implements Constants {
 
         // currency spinner
         final Spinner spinnerCurrency = (Spinner) rootView.findViewById(R.id.spinner_currency);
-        final ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(mContext,
+        final CurrencyAdapter<CharSequence> adapter = new CurrencyAdapter<CharSequence>(mContext,
                 R.layout.spinner, new ArrayList<CharSequence>());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCurrency.setAdapter(adapter);
@@ -71,7 +73,7 @@ public class SettingsFragment extends Fragment implements Constants {
                     return;
                 }
                 ExchangeRateTask exchangeRate = new ExchangeRateTask(mContext, spinnerCurrency,
-                        adapter.getPosition(SharedPref.getCurrency(mContext)));
+                        coordinatorLayout, adapter.getPosition(SharedPref.getCurrency(mContext)));
                 exchangeRate.execute();
             }
 
@@ -80,7 +82,7 @@ public class SettingsFragment extends Fragment implements Constants {
             }
         });
         // fill the currency spinner
-        CurrencyTask currencyTask = new CurrencyTask(mContext, spinnerCurrency, adapter);
+        CurrencyTask currencyTask = new CurrencyTask(mContext, spinnerCurrency, coordinatorLayout, adapter);
         currencyTask.execute();
 
         // export to CSV
@@ -100,7 +102,7 @@ public class SettingsFragment extends Fragment implements Constants {
                     days = 31;
                 else if (period.equals(YEAR))
                     days = 365;
-                ExportDBToXLSTask exportTask = new ExportDBToXLSTask(mContext);
+                ExportDBToXLSTask exportTask = new ExportDBToXLSTask(mContext, coordinatorLayout);
                 exportTask.execute(days);
             }
         });
